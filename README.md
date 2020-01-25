@@ -1,2 +1,9 @@
-# google-hash-code-2020
-Memories of the Google Hash Code 2020 competition
+# Google Hash Code 2020
+
+Solutions for all the rounds of Google Hash Code 2020 competition.
+
+## Practice
+
+## Round 1
+
+## The team
