@@ -1,28 +1,33 @@
 package it.perhashperaadhashtra.practice;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import it.perhashperaadhashtra.practice.io.PizzaInputReader;
 import it.perhashperaadhashtra.practice.io.PizzaOutputWriter;
 
 public class HashCodePractice {
 
-    public static void main(String[] args) {
-        final char problemPrefix = 'a';
-        final Solver<PizzaInput, PizzaOutput> solver = new DummySolver();
+    private final char problemPrefix;
+    private final Solver<PizzaInput, PizzaOutput> solver;
 
-        PizzaInput inputData = null;
+    public HashCodePractice(char problemPrefix) {
+        this.problemPrefix = problemPrefix;
+        this.solver = new DummySolver();
+    }
+
+    public void solve() throws RuntimeException {
+        final long startTime = System.nanoTime();
+
+        PizzaInput inputData;
         try {
             System.out.print("Loading input file...");
             inputData = PizzaInputReader.getInstance().readInputFile(problemPrefix);
             System.out.println("        OK");
         } catch (IOException ioe) {
             System.err.println(String.format("\n\nAn error occurred loading input file '%c'\n", problemPrefix));
-            ioe.printStackTrace(System.err);
-            System.exit(1);
+            throw new RuntimeException(ioe);
         }
-
-        //System.out.println(inputData);
 
         System.out.print("Solving problem...");
         PizzaOutput outputData = solver.solve(inputData);
@@ -34,8 +39,20 @@ public class HashCodePractice {
             System.out.println("          OK");
         } catch (IOException ioe) {
             System.err.println("\n\nAn error occurred writing solution to file\n");
-            ioe.printStackTrace(System.err);
-            System.exit(2);
+            throw new RuntimeException(ioe);
+        }
+
+        final long endTime = System.nanoTime();
+        System.out.println(String.format("\nProblem solved in %d ms.",
+                TimeUnit.MILLISECONDS.convert(endTime - startTime, TimeUnit.NANOSECONDS)));
+    }
+
+    public static void main(String[] args) {
+        HashCodePractice hashCodePractice = new HashCodePractice('a');
+        try {
+            hashCodePractice.solve();
+        } catch (Exception e) {
+            e.printStackTrace(System.err);
         }
     }
 
