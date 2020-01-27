@@ -2,7 +2,7 @@ package it.perhashperaadhashtra.practice;
 
 import java.io.IOException;
 
-import it.perhashperaadhashtra.practice.io.InputReader;
+import it.perhashperaadhashtra.practice.io.PizzaInputReader;
 
 public class HashCodePractice {
 
@@ -12,7 +12,7 @@ public class HashCodePractice {
         PizzaInput inputData = null;
         try {
             System.out.print("Loading input file...");
-            inputData = InputReader.loadInputFile(inputPrefix);
+            inputData = PizzaInputReader.getInstance().readInputFile(inputPrefix);
             System.out.println("        OK");
         } catch (IOException ioe) {
             System.err.println(String.format("\nAn error occurred loading input file '%c'", inputPrefix));
