@@ -6,10 +6,11 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 
+import com.google.common.io.CharSource;
 import com.google.common.io.Files;
 import it.perhashperaadhashtra.practice.PizzaInput;
 
-public class PizzaInputReader extends AbstractInputReader<PizzaInput> {
+public class PizzaInputReader extends InputReader<PizzaInput> {
 
     private static String[] inputFilenames = new String[] {
             "a_example.in",
@@ -34,7 +35,8 @@ public class PizzaInputReader extends AbstractInputReader<PizzaInput> {
 
     @Override
     public PizzaInput readFile(File inputFile) throws IOException {
-        List<String> lines = Files.asCharSource(inputFile, StandardCharsets.UTF_8).readLines();
+        CharSource charSource = Files.asCharSource(inputFile, StandardCharsets.UTF_8);
+        List<String> lines = charSource.readLines();
         String[] tokens = lines.get(0).trim().split("\\s");
         int maxSlices = Integer.parseInt(tokens[0]);
         int pizzaTypes = Integer.parseInt(tokens[1]);
