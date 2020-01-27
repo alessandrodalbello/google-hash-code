@@ -4,35 +4,39 @@ import java.util.Arrays;
 
 public class PizzaInput implements InputData {
 
-    private final int maximumPizzaSlides;
-    private final int numberOfPizzaTypes;
-    private final int[] slicesPerPizzaTypes;
+    private final int maxSlices;
+    private final int pizzaTypes;
+    private final int[] pizzaSlices;
 
-    public PizzaInput(int maximumPizzaSlides, int numberOfPizzaTypes, int[] slicesPerPizzaTypes) {
-        this.maximumPizzaSlides = maximumPizzaSlides;
-        this.numberOfPizzaTypes = numberOfPizzaTypes;
-        this.slicesPerPizzaTypes = slicesPerPizzaTypes;
+    public PizzaInput(int maxSlices, int pizzaTypes, int[] pizzaSlices) {
+        this.maxSlices = maxSlices;
+        this.pizzaTypes = pizzaTypes;
+        this.pizzaSlices = pizzaSlices;
     }
 
-    public int getMaximumPizzaSlides() {
-        return maximumPizzaSlides;
+    public int getMaxSlices() {
+        return maxSlices;
     }
 
-    public int getNumberOfPizzaTypes() {
-        return numberOfPizzaTypes;
+    public int getPizzaTypes() {
+        return pizzaTypes;
     }
 
     public int getPizzaSlices(int pizzaType) {
-        return slicesPerPizzaTypes[pizzaType];
+        return pizzaSlices[pizzaType];
+    }
+
+    public int getPizzaValue(int pizzaType) {
+        return getPizzaSlices(pizzaType);
     }
 
     @Override
     public String toString() {
         return PizzaInput.class.getSimpleName() + "{" +
-                "maximumPizzaSlides=" + maximumPizzaSlides +
-                ", numberOfPizzaTypes=" + numberOfPizzaTypes +
-                ", slicesPerPizzaTypes=" + Arrays.toString(slicesPerPizzaTypes) +
-                '}';
+                "maxSlices=" + maxSlices +
+                ", pizzaTypes=" + pizzaTypes +
+                ", pizzaSlices=" + Arrays.toString(pizzaSlices) +
+                "}";
     }
 
 }

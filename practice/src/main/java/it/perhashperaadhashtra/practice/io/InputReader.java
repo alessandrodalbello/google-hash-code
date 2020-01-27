@@ -26,9 +26,9 @@ public class InputReader {
     public static PizzaInput loadInputFile(char inputPrefix) throws IOException {
         int fileIndex = inputPrefix - 'a';
         String inputFilename = INPUT_FOLDER + inputFilenames[fileIndex];
-        URL inputUrl = InputReader.class.getResource(inputFilename);
+        URL inputFileUrl = InputReader.class.getResource(inputFilename);
         try {
-            File inputFile = new File(inputUrl.toURI());
+            File inputFile = new File(inputFileUrl.toURI());
             return InputReader.parse(inputFile);
         } catch (URISyntaxException urise) {
             throw new IOException(urise);
@@ -38,12 +38,12 @@ public class InputReader {
     private static PizzaInput parse(File inputFile) throws IOException {
         List<String> lines = Files.asCharSource(inputFile, StandardCharsets.UTF_8).readLines();
         String[] tokens = lines.get(0).trim().split("\\s");
-        int maximumPizzaSlides = Integer.parseInt(tokens[0]);
-        int numberOfPizzaTypes = Integer.parseInt(tokens[1]);
-        int[] slicesPerPizzaTypes = Arrays.stream(lines.get(1).trim().split("\\s"))
+        int maxSlices = Integer.parseInt(tokens[0]);
+        int pizzaTypes = Integer.parseInt(tokens[1]);
+        int[] pizzaSlices = Arrays.stream(lines.get(1).trim().split("\\s"))
                 .mapToInt(Integer::parseInt)
                 .toArray();
-        return new PizzaInput(maximumPizzaSlides, numberOfPizzaTypes, slicesPerPizzaTypes);
+        return new PizzaInput(maxSlices, pizzaTypes, pizzaSlices);
     }
 
 }
