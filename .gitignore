@@ -35,6 +35,9 @@ logs/
 # Output folder #
 out/
 
+# Output files #
+*.out
+
 ##
 ## Eclipse
 ##
