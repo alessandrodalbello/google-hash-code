@@ -1,41 +1,34 @@
 package it.perhashperaadhashtra.practice;
 
-import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class PizzaInput implements InputData {
 
     private final int maxSlices;
-    private final int pizzaTypes;
-    private final int[] pizzaSlices;
+    private final Map<Integer, Pizza> pizzas;
 
-    public PizzaInput(int maxSlices, int pizzaTypes, int[] pizzaSlices) {
+    public PizzaInput(int maxSlices, List<Pizza> pizzas) {
         this.maxSlices = maxSlices;
-        this.pizzaTypes = pizzaTypes;
-        this.pizzaSlices = pizzaSlices;
+        this.pizzas = pizzas.stream()
+                .collect(Collectors.toUnmodifiableMap(Pizza::getType, Function.identity()));
     }
 
     public int getMaxSlices() {
         return maxSlices;
     }
 
-    public int getPizzaTypes() {
-        return pizzaTypes;
-    }
-
-    public int getPizzaSlices(int pizzaType) {
-        return pizzaSlices[pizzaType];
-    }
-
-    public int getPizzaValue(int pizzaType) {
-        return getPizzaSlices(pizzaType);
+    public Pizza getPizzaByType(int pizzaType) {
+        return pizzas.get(pizzaType);
     }
 
     @Override
     public String toString() {
         return PizzaInput.class.getSimpleName() + "{" +
                 "maxSlices=" + maxSlices +
-                ", pizzaTypes=" + pizzaTypes +
-                ", pizzaSlices=" + Arrays.toString(pizzaSlices) +
+                ", pizzas=" + pizzas +
                 "}";
     }
 

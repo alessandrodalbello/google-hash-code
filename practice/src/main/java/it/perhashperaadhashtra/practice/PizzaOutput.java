@@ -12,6 +12,12 @@ public class PizzaOutput implements OutputData {
         this.pizzas = pizzas;
     }
 
+    @Override
+    public long getSolutionScore() {
+        // TODO
+        return 0L;
+    }
+
     public int getPizzasNumb() {
         return pizzasNumb;
     }
@@ -27,5 +33,4 @@ public class PizzaOutput implements OutputData {
                 ", pizzas=" + Arrays.toString(pizzas) +
                 "}";
     }
-
 }

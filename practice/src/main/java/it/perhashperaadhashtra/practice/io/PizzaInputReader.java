@@ -3,11 +3,13 @@ package it.perhashperaadhashtra.practice.io;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import com.google.common.io.CharSource;
 import com.google.common.io.Files;
+import it.perhashperaadhashtra.practice.Pizza;
 import it.perhashperaadhashtra.practice.PizzaInput;
 
 public class PizzaInputReader extends InputReader<PizzaInput> {
@@ -39,11 +41,11 @@ public class PizzaInputReader extends InputReader<PizzaInput> {
         List<String> lines = charSource.readLines();
         String[] tokens = lines.get(0).trim().split("\\s");
         int maxSlices = Integer.parseInt(tokens[0]);
-        int pizzaTypes = Integer.parseInt(tokens[1]);
-        int[] pizzaSlices = Arrays.stream(lines.get(1).trim().split("\\s"))
-                .mapToInt(Integer::parseInt)
-                .toArray();
-        return new PizzaInput(maxSlices, pizzaTypes, pizzaSlices);
+        String[] slices = lines.get(1).trim().split("\\s");
+        List<Pizza> pizzas = IntStream.range(0, slices.length)
+                .mapToObj(type -> new Pizza(type, Integer.parseInt(slices[type])))
+                .collect(Collectors.toUnmodifiableList());
+        return new PizzaInput(maxSlices, pizzas);
     }
 
 }
