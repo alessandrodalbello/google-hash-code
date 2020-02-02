@@ -1,36 +1,29 @@
 package it.perhashperaadhashtra.practice;
 
-import java.util.Arrays;
+import java.util.List;
 
 public class PizzaOutput implements OutputData {
 
-    private final int pizzasNumb;
-    private final int[] pizzas;
+    private final List<Pizza> pizzas;
 
-    public PizzaOutput(int pizzasNumb, int[] pizzas) {
-        this.pizzasNumb = pizzasNumb;
+    public PizzaOutput(List<Pizza> pizzas) {
         this.pizzas = pizzas;
     }
 
     @Override
     public long getSolutionScore() {
-        // TODO
-        return 0L;
+        return pizzas.stream()
+                .reduce(0, (totalSlices, pizza) -> totalSlices += pizza.getSlices(), Integer::sum);
     }
 
-    public int getPizzasNumb() {
-        return pizzasNumb;
-    }
-
-    public int[] getPizzas() {
+    public List<Pizza> getPizzas() {
         return pizzas;
     }
 
     @Override
     public String toString() {
         return PizzaOutput.class.getSimpleName() + "{" +
-                "pizzasNumb=" + pizzasNumb +
-                ", pizzas=" + Arrays.toString(pizzas) +
+                "pizzas=" + pizzas +
                 "}";
     }
 }

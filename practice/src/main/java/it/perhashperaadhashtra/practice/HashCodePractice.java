@@ -43,7 +43,8 @@ public class HashCodePractice {
         }
 
         final long endTime = System.nanoTime();
-        System.out.println(String.format("\nProblem solved in %d ms.",
+        System.out.println(String.format("\nFinal score of this solution is %d.", outputData.getSolutionScore()));
+        System.out.println(String.format("Problem solved in %d ms.",
                 TimeUnit.MILLISECONDS.convert(endTime - startTime, TimeUnit.NANOSECONDS)));
     }
 
