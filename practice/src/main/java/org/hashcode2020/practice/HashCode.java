@@ -1,22 +1,27 @@
-package it.perhashperaadhashtra.practice;
+/*
+ * Copyright (c) 2020 Triplebet Limited. All right reserved. Inchalla, Le Val, Alderney, GY9 3UL.
+ * Company Registration Number: 1827.
+ */
+
+package org.hashcode2020.practice;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import it.perhashperaadhashtra.practice.io.PizzaInputReader;
-import it.perhashperaadhashtra.practice.io.PizzaOutputWriter;
+import org.hashcode2020.practice.io.PizzaInputReader;
+import org.hashcode2020.practice.io.PizzaOutputWriter;
 
-public class HashCodePractice {
+public class HashCode {
 
     private final char problemPrefix;
     private final Solver<PizzaInput, PizzaOutput> solver;
 
-    public HashCodePractice(char problemPrefix) {
+    public HashCode(char problemPrefix) {
         this.problemPrefix = problemPrefix;
         this.solver = new DummySolver();
     }
 
-    public void solve() throws RuntimeException {
+    public void run() throws RuntimeException {
         final long startTime = System.nanoTime();
 
         PizzaInput inputData;
@@ -49,9 +54,9 @@ public class HashCodePractice {
     }
 
     public static void main(String[] args) {
-        HashCodePractice hashCodePractice = new HashCodePractice('a');
+        HashCode hashCode = new HashCode('a');
         try {
-            hashCodePractice.solve();
+            hashCode.run();
         } catch (Exception e) {
             e.printStackTrace(System.err);
         }

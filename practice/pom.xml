@@ -5,12 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>it.perhashperaadhashtra</groupId>
-        <artifactId>hashcode2020</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <groupId>org.hashcode</groupId>
+        <artifactId>hashcode-2020</artifactId>
+        <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>hashcode2020-practice</artifactId>
+    <artifactId>hashcode-2020-practice</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
@@ -39,7 +39,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>it.perhashperaadhashtra.practice.HashCodePractice</mainClass>
+                                    <mainClass>org.hashcode2020.practice.HashCode</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>

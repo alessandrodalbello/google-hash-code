@@ -1,4 +1,9 @@
-package it.perhashperaadhashtra.practice;
+/*
+ * Copyright (c) 2020 Triplebet Limited. All right reserved. Inchalla, Le Val, Alderney, GY9 3UL.
+ * Company Registration Number: 1827.
+ */
+
+package org.hashcode2020.practice;
 
 import java.util.List;
 import java.util.Map;

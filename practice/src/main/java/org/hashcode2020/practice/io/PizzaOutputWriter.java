@@ -1,4 +1,9 @@
-package it.perhashperaadhashtra.practice.io;
+/*
+ * Copyright (c) 2020 Triplebet Limited. All right reserved. Inchalla, Le Val, Alderney, GY9 3UL.
+ * Company Registration Number: 1827.
+ */
+
+package org.hashcode2020.practice.io;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,8 +13,8 @@ import java.util.stream.Collectors;
 
 import com.google.common.io.CharSink;
 import com.google.common.io.Files;
-import it.perhashperaadhashtra.practice.Pizza;
-import it.perhashperaadhashtra.practice.PizzaOutput;
+import org.hashcode2020.practice.Pizza;
+import org.hashcode2020.practice.PizzaOutput;
 
 public class PizzaOutputWriter extends OutputWriter<PizzaOutput> {
 
