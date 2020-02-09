@@ -25,8 +25,8 @@ public class PizzaInput implements InputData {
         return maxSlices;
     }
 
-    public Pizza getPizzaByType(int pizzaType) {
-        return pizzas.get(pizzaType);
+    public Map<Integer, Pizza> getPizzas() {
+        return pizzas;
     }
 
     @Override

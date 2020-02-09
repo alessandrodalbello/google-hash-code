@@ -25,6 +25,10 @@ public class Pizza {
         return slices;
     }
 
+    public int getValue() {
+        return slices;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

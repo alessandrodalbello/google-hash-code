@@ -18,7 +18,7 @@ public class HashCode {
 
     public HashCode(char problemPrefix) {
         this.problemPrefix = problemPrefix;
-        this.solver = new DummySolver();
+        this.solver = new AleSolver();
     }
 
     public void run() throws RuntimeException {
@@ -54,7 +54,7 @@ public class HashCode {
     }
 
     public static void main(String[] args) {
-        HashCode hashCode = new HashCode('a');
+        HashCode hashCode = new HashCode('c');
         try {
             hashCode.run();
         } catch (Exception e) {
