@@ -1,19 +1,12 @@
-/*
- * Copyright (c) 2020 Triplebet Limited. All right reserved. Inchalla, Le Val, Alderney, GY9 3UL.
- * Company Registration Number: 1827.
- */
-
 package org.hashcode2020.practice.io;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import com.google.common.io.CharSource;
-import com.google.common.io.Files;
+import com.google.common.io.CharStreams;
+import org.hashcode2020.io.InputReader;
 import org.hashcode2020.practice.Pizza;
 import org.hashcode2020.practice.PizzaInput;
 
@@ -41,9 +34,8 @@ public class PizzaInputReader extends InputReader<PizzaInput> {
     }
 
     @Override
-    public PizzaInput readFile(File inputFile) throws IOException {
-        CharSource charSource = Files.asCharSource(inputFile, StandardCharsets.UTF_8);
-        List<String> lines = charSource.readLines();
+    public PizzaInput readFile(Readable readable) throws IOException {
+        List<String> lines = CharStreams.readLines(readable);
         String[] tokens = lines.get(0).trim().split("\\s");
         int maxSlices = Integer.parseInt(tokens[0]);
         String[] slices = lines.get(1).trim().split("\\s");

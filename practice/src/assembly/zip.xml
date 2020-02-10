@@ -7,6 +7,7 @@
     <formats>
         <format>zip</format>
     </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
 
     <fileSets>
         <fileSet>
@@ -28,11 +29,10 @@
             <directory>src/main</directory>
             <outputDirectory>source/src/main</outputDirectory>
         </fileSet>
+        <fileSet>
+            <directory>../api/src/main</directory>
+            <outputDirectory>source/src/main</outputDirectory>
+        </fileSet>
     </fileSets>
-    <files>
-        <file>
-            <source>${project.build.directory}/${project.artifactId}-${project.version}.jar</source>
-        </file>
-    </files>
 
 </assembly>

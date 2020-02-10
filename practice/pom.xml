@@ -14,6 +14,13 @@
     <packaging>jar</packaging>
 
     <dependencies>
+        <!-- Internal dependencies -->
+        <dependency>
+            <groupId>org.hashcode</groupId>
+            <artifactId>hashcode-2020-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
         <!-- Application dependencies -->
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -26,9 +33,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <configuration>
-                    <finalName>${project.artifactId}</finalName>
-                </configuration>
                 <executions>
                     <execution>
                         <id>build-jar</id>
@@ -45,6 +49,8 @@
                             <descriptorRefs>
                                 <descriptorRef>jar-with-dependencies</descriptorRef>
                             </descriptorRefs>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <finalName>${project.artifactId}-exec</finalName>
                         </configuration>
                     </execution>
                     <execution>
@@ -54,10 +60,11 @@
                             <goal>single</goal>
                         </goals>
                         <configuration>
-                            <appendAssemblyId>false</appendAssemblyId>
                             <descriptors>
                                 <descriptor>src/assembly/zip.xml</descriptor>
                             </descriptors>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <finalName>${project.artifactId}</finalName>
                         </configuration>
                     </execution>
                 </executions>
