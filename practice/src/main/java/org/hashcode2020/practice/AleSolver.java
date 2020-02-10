@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import org.hashcode2020.Solver;
+
 public class AleSolver implements Solver<PizzaInput, PizzaOutput> {
 
     private final Map<KnapsackKey, Integer> knapsackValues;
