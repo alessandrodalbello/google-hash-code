@@ -1,9 +1,9 @@
 package org.hashcode2020.io;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 import org.hashcode2020.InputData;
 
@@ -13,7 +13,7 @@ public abstract class InputReader<IN extends InputData> {
 
     private final String[] inputFilenames;
 
-    protected abstract IN readFile(File inputFile) throws IOException;
+    protected abstract IN readFile(Readable readable) throws IOException;
 
     protected InputReader(String[] inputFilenames) {
         this.inputFilenames = inputFilenames;
@@ -22,13 +22,9 @@ public abstract class InputReader<IN extends InputData> {
     public IN readInputFile(char problemPrefix) throws IOException {
         int fileIndex = problemPrefix - 'a';
         String inputFilename = INPUT_FOLDER + inputFilenames[fileIndex];
-        URL inputFileUrl = getClass().getResource(inputFilename);
-        try {
-            File inputFile = new File(inputFileUrl.toURI());
-            return readFile(inputFile);
-        } catch (URISyntaxException urise) {
-            throw new IOException(urise);
-        }
+        InputStream inputStream = getClass().getResourceAsStream(inputFilename);
+        InputStreamReader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+        return readFile(inputStreamReader);
     }
 
 }
