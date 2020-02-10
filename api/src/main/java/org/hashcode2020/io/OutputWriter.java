@@ -1,16 +1,11 @@
-/*
- * Copyright (c) 2020 Triplebet Limited. All right reserved. Inchalla, Le Val, Alderney, GY9 3UL.
- * Company Registration Number: 1827.
- */
-
-package org.hashcode2020.practice.io;
+package org.hashcode2020.io;
 
 import java.io.File;
 import java.io.IOException;
 
-import org.hashcode2020.practice.OutputData;
+import org.hashcode2020.OutputData;
 
-abstract class OutputWriter<OUT extends OutputData> {
+public abstract class OutputWriter<OUT extends OutputData> {
 
     private static final String SOLUTION_NAME_TEMPLATE = "%s_solution.out";
 

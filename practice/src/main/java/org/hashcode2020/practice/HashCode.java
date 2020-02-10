@@ -1,13 +1,9 @@
-/*
- * Copyright (c) 2020 Triplebet Limited. All right reserved. Inchalla, Le Val, Alderney, GY9 3UL.
- * Company Registration Number: 1827.
- */
-
 package org.hashcode2020.practice;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import org.hashcode2020.Solver;
 import org.hashcode2020.practice.io.PizzaInputReader;
 import org.hashcode2020.practice.io.PizzaOutputWriter;
 
