@@ -43,7 +43,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>org.hashcode2020.practice.HashCode</mainClass>
+                                    <mainClass>org.hashcode2020.practice.HashCodePractice</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>
