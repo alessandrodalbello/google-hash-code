@@ -1,4 +1,4 @@
-package org.hashcode2020.practice;
+package org.hashcode2020.practice.model;
 
 import java.util.List;
 import java.util.Map;

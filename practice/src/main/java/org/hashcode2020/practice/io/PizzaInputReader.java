@@ -7,8 +7,8 @@ import java.util.stream.IntStream;
 
 import com.google.common.io.CharStreams;
 import org.hashcode2020.io.InputReader;
-import org.hashcode2020.practice.Pizza;
-import org.hashcode2020.practice.PizzaInput;
+import org.hashcode2020.practice.model.Pizza;
+import org.hashcode2020.practice.model.PizzaInput;
 
 public class PizzaInputReader extends InputReader<PizzaInput> {
 

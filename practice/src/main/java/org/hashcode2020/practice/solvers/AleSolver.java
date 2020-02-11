@@ -1,4 +1,4 @@
-package org.hashcode2020.practice;
+package org.hashcode2020.practice.solvers;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -7,6 +7,9 @@ import java.util.Map;
 import java.util.Objects;
 
 import org.hashcode2020.Solver;
+import org.hashcode2020.practice.model.Pizza;
+import org.hashcode2020.practice.model.PizzaInput;
+import org.hashcode2020.practice.model.PizzaOutput;
 
 public class AleSolver implements Solver<PizzaInput, PizzaOutput> {
 
