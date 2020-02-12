@@ -1,4 +1,4 @@
-package org.hashcode2020.practice;
+package org.hashcode2020.practice.model;
 
 import java.util.Objects;
 
@@ -17,6 +17,10 @@ public class Pizza {
     }
 
     public int getSlices() {
+        return slices;
+    }
+
+    public int getValue() {
         return slices;
     }
 

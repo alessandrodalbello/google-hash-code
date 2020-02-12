@@ -22,11 +22,11 @@ Solutions for all the rounds of Google Hash Code 2020 competition.
    for instance
 
     ```shell script
-    $ java -jar target/hashcode-2020-practice-exec.jar b
+    $ java -jar target/hashcode-2020-practice-exec.jar a b c
     ```
 
- - Zip current solution and source code (from module):
+ - Zip source code into an archive (from module):
 
     ```shell script
-    $ mvn clean assembly:single@zip-solution
+    $ mvn clean assembly:single@zip-source-code
     ```

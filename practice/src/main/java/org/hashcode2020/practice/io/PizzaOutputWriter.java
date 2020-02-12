@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 import com.google.common.io.CharSink;
 import com.google.common.io.Files;
 import org.hashcode2020.io.OutputWriter;
-import org.hashcode2020.practice.Pizza;
-import org.hashcode2020.practice.PizzaOutput;
+import org.hashcode2020.practice.model.Pizza;
+import org.hashcode2020.practice.model.PizzaOutput;
 
 public class PizzaOutputWriter extends OutputWriter<PizzaOutput> {
 

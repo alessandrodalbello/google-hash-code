@@ -12,26 +12,18 @@
     <fileSets>
         <fileSet>
             <includes>
-                <include>*.out</include>
-            </includes>
-        </fileSet>
-        <fileSet>
-            <includes>
                 <include>pom.xml</include>
             </includes>
-            <outputDirectory>source</outputDirectory>
         </fileSet>
         <fileSet>
             <directory>src/assembly</directory>
-            <outputDirectory>source/src/assembly</outputDirectory>
         </fileSet>
         <fileSet>
             <directory>src/main</directory>
-            <outputDirectory>source/src/main</outputDirectory>
         </fileSet>
         <fileSet>
             <directory>../api/src/main</directory>
-            <outputDirectory>source/src/main</outputDirectory>
+            <outputDirectory>src/main</outputDirectory>
         </fileSet>
     </fileSets>
 
