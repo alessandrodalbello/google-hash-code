@@ -8,7 +8,7 @@ import org.hashcode2020.practice.io.PizzaInputReader;
 import org.hashcode2020.practice.io.PizzaOutputWriter;
 import org.hashcode2020.practice.model.PizzaInput;
 import org.hashcode2020.practice.model.PizzaOutput;
-import org.hashcode2020.practice.solvers.AleSolver;
+import org.hashcode2020.practice.solvers.GreedySolver;
 
 public class HashCodePractice {
 
@@ -17,7 +17,7 @@ public class HashCodePractice {
 
     public HashCodePractice(char problemPrefix) {
         this.problemPrefix = problemPrefix;
-        this.solver = new AleSolver();
+        this.solver = new GreedySolver();
     }
 
     public void run() throws RuntimeException {
