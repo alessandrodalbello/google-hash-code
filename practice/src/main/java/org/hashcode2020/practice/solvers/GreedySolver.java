@@ -1,7 +1,8 @@
 package org.hashcode2020.practice.solvers;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,24 +14,30 @@ import org.hashcode2020.practice.model.PizzaOutput;
 public class GreedySolver implements Solver<PizzaInput, PizzaOutput> {
 
     @Override
-    public PizzaOutput solve(PizzaInput pizzaInput) {
-        int remainingSlices = pizzaInput.getMaxSlices();
-        List<Pizza> pizzas = pizzaInput.getPizzas().values().stream()
-                .sorted(Comparator.comparingInt(Pizza::getSlices).reversed())
-                .collect(Collectors.toList());
-        int numberOfPizzas = pizzas.size();
+    public PizzaOutput solve(PizzaInput inputData) {
+        List<Pizza> sortedPizzas = sortPizzasByValue(inputData.getPizzas().values());
+        final List<Pizza> pizzasToOrder = retrieveMostValuablePizzas(inputData.getMaxSlices(), sortedPizzas);
+        return new PizzaOutput(pizzasToOrder);
+    }
 
-        final List<Pizza> pizzasToOrder = new ArrayList<>();
-        int index = 0;
-        while (index < numberOfPizzas && remainingSlices > 0) {
-            Pizza pizza = pizzas.get(index);
-            if (pizza.getSlices() <= remainingSlices) {
-                pizzasToOrder.add(pizza);
+    private List<Pizza> sortPizzasByValue(Collection<Pizza> pizzas) {
+        return pizzas.stream()
+                .sorted(Comparator.comparingInt(Pizza::getValue).reversed())
+                .collect(Collectors.toList());
+    }
+
+    private List<Pizza> retrieveMostValuablePizzas(int maxSlices, List<Pizza> sortedPizzas) {
+        final List<Pizza> pizzasToOrder = new LinkedList<>();
+        int remainingSlices = maxSlices;
+        int numberOfPizzas = sortedPizzas.size();
+        for (int i = 0; remainingSlices > 0 && i < numberOfPizzas; i++) {
+            final Pizza pizza = sortedPizzas.get(i);
+            if (pizza.getValue() <= remainingSlices) {
+                pizzasToOrder.add(0, pizza);
                 remainingSlices -= pizza.getSlices();
             }
-            index += 1;
         }
-        return new PizzaOutput(pizzasToOrder);
+        return pizzasToOrder;
     }
 
 }

@@ -11,13 +11,13 @@ import org.hashcode2020.practice.model.Pizza;
 import org.hashcode2020.practice.model.PizzaInput;
 import org.hashcode2020.practice.model.PizzaOutput;
 
-public class AleSolver implements Solver<PizzaInput, PizzaOutput> {
+public class AccurateSolver implements Solver<PizzaInput, PizzaOutput> {
 
     private final Map<KnapsackKey, Integer> knapsackValues;
     private final Map<Integer, Pizza> pizzasByValue;
     private Map<Integer, Pizza> pizzasByType;
 
-    public AleSolver() {
+    public AccurateSolver() {
         knapsackValues = new HashMap<>();
         pizzasByValue = new HashMap<>();
     }
@@ -28,9 +28,9 @@ public class AleSolver implements Solver<PizzaInput, PizzaOutput> {
         int numberOfPizzas = pizzasByType.size();
         int maxSlices = inputData.getMaxSlices();
 
-        int maxSlicesToBuy = solveKnapsack(new KnapsackKey(numberOfPizzas, maxSlices));
-        List<Pizza> pizzasToBuy = getPizzasToBuy(maxSlicesToBuy);
-        return new PizzaOutput(pizzasToBuy);
+        int maxSlicesToOrder = solveKnapsack(new KnapsackKey(numberOfPizzas, maxSlices));
+        List<Pizza> pizzasToOrder = getPizzasToOrder(maxSlicesToOrder);
+        return new PizzaOutput(pizzasToOrder);
     }
 
     private int solveKnapsack(KnapsackKey currentKey) {
@@ -59,15 +59,15 @@ public class AleSolver implements Solver<PizzaInput, PizzaOutput> {
         return value;
     }
 
-    private List<Pizza> getPizzasToBuy(int maxSlicesToBuy) {
-        final List<Pizza> pizzasToBuy = new LinkedList<>();
-        int remainingSlices = maxSlicesToBuy;
+    private List<Pizza> getPizzasToOrder(int maxSlicesToOrder) {
+        final List<Pizza> pizzasToOrder = new LinkedList<>();
+        int remainingSlices = maxSlicesToOrder;
         while (remainingSlices > 0) {
             Pizza pizza = pizzasByValue.get(remainingSlices);
-            pizzasToBuy.add(0, pizza);
+            pizzasToOrder.add(0, pizza);
             remainingSlices -= pizza.getSlices();
         }
-        return pizzasToBuy;
+        return pizzasToOrder;
     }
 
     private static class KnapsackKey {
