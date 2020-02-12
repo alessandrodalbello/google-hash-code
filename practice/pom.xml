@@ -54,7 +54,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>zip-solution</id>
+                        <id>zip-source-code</id>
                         <phase>package</phase>
                         <goals>
                             <goal>single</goal>

@@ -4,13 +4,13 @@ Solutions for all the rounds of Google Hash Code 2020 competition.
 
 ## How to
 
- - To build and install all the modules into local Maven repository (from project root):
+ - Build and install all the modules into local Maven repository (from project root):
     
     ```shell script
     $ mvn clean install
     ```
 
- - To run from executable JAR (from module):
+ - Run from executable JAR (from module):
 
     ```shell script
     $ java -jar target/<MODULE_ARTIFACT_NAME>-exec.jar <ARGUMENTS>
@@ -19,11 +19,11 @@ Solutions for all the rounds of Google Hash Code 2020 competition.
    for instance
 
     ```shell script
-    $ java -jar target/hashcode-2020-practice-exec.jar b
+    $ java -jar target/hashcode-2020-practice-exec.jar a b c
     ```
 
- - To zip current solution and source code (from module):
+ - Zip source code into an archive (from module):
 
     ```shell script
-    $ mvn clean assembly:single@zip-solution
+    $ mvn clean assembly:single@zip-source-code
     ```
