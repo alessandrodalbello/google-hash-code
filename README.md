@@ -7,10 +7,10 @@ Solutions for all the rounds of Google Hash Code 2020 competition.
 
 ## How to
 
- - Build and install all the modules into local Maven repository (from project root):
+ - Build and package all the modules (from project root):
     
     ```shell script
-    $ mvn clean install
+    $ mvn clean package
     ```
 
  - Run from executable JAR (from module):
