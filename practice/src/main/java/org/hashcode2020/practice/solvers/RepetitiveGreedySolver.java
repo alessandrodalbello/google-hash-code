@@ -1,10 +1,9 @@
 package org.hashcode2020.practice.solvers;
 
 import java.util.Collection;
-import java.util.Comparator;
-import java.util.LinkedList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 import org.hashcode2020.Solver;
 import org.hashcode2020.practice.model.Pizza;
@@ -13,51 +12,36 @@ import org.hashcode2020.practice.model.PizzaOutput;
 
 public class RepetitiveGreedySolver implements Solver<PizzaInput, PizzaOutput> {
 
+    private final GreedySolver greedySolver;
+
+    public RepetitiveGreedySolver() {
+        greedySolver = new GreedySolver();
+    }
+
     @Override
     public PizzaOutput solve(PizzaInput inputData) {
-        final int maxSlices = inputData.getMaxSlices();
-        List<Pizza> sortedPizzas = sortPizzasByValue(inputData.getPizzas().values());
-        List<Pizza> pizzasToOrder = solve(maxSlices, sortedPizzas);
-        return new PizzaOutput(pizzasToOrder);
-    }
+        final int totalMaxSlices = inputData.getMaxSlices();
+        Map<Integer, Pizza> remainingPizzas = new HashMap<>(inputData.getPizzas());
 
-    private List<Pizza> sortPizzasByValue(Collection<Pizza> pizzas) {
-        return pizzas.stream()
-                .sorted(Comparator.comparingInt(Pizza::getValue).reversed())
-                .collect(Collectors.toList());
-    }
-
-    private List<Pizza> solve(int maxSlices, List<Pizza> sortedPizzas) {
-        List<Pizza> remainingPizzas = List.copyOf(sortedPizzas);
-        List<Pizza> mostValuablePizzas = retrieveMostValuablePizzas(maxSlices, remainingPizzas);
-        int mostValuableSlices = calculateValue(mostValuablePizzas);
-        while (mostValuableSlices < maxSlices && !remainingPizzas.isEmpty()) {
-            remainingPizzas = remainingPizzas.subList(1, remainingPizzas.size());
-            List<Pizza> pizzasToOrder = retrieveMostValuablePizzas(maxSlices, remainingPizzas);
-            int slicesToOrder = calculateValue(pizzasToOrder);
-            if (slicesToOrder > mostValuableSlices) {
-                mostValuableSlices = slicesToOrder;
-                mostValuablePizzas = pizzasToOrder;
+        PizzaOutput bestSolutionFound = new PizzaOutput(List.of());
+        boolean isBetterSolutionPossible;
+        do {
+            List<Pizza> pizzas = List.copyOf(remainingPizzas.values());
+            PizzaOutput greedySolution = greedySolver.solve(new PizzaInput(totalMaxSlices, pizzas));
+            if (bestSolutionFound.getSolutionScore() < greedySolution.getSolutionScore()) {
+                bestSolutionFound = greedySolution;
             }
-        }
-        return mostValuablePizzas;
+            remainingPizzas.remove(remainingPizzas.size() - 1);
+            isBetterSolutionPossible = isBetterSolutionPossible(totalMaxSlices, bestSolutionFound, remainingPizzas.values());
+        } while (isBetterSolutionPossible);
+        return bestSolutionFound;
     }
 
-    private List<Pizza> retrieveMostValuablePizzas(int maxSlices, List<Pizza> sortedPizzas) {
-        final List<Pizza> pizzasToOrder = new LinkedList<>();
-        int remainingSlices = maxSlices;
-        int numberOfPizzas = sortedPizzas.size();
-        for (int i = 0; remainingSlices > 0 && i < numberOfPizzas; i++) {
-            final Pizza pizza = sortedPizzas.get(i);
-            if (pizza.getValue() <= remainingSlices) {
-                pizzasToOrder.add(0, pizza);
-                remainingSlices -= pizza.getSlices();
-            }
-        }
-        return pizzasToOrder;
+    private boolean isBetterSolutionPossible(int maxSlices, PizzaOutput bestSolutionFound, Collection<Pizza> pizzas) {
+        return bestSolutionFound.getSolutionScore() < maxSlices && totalSlices(pizzas) > bestSolutionFound.getSolutionScore();
     }
 
-    private int calculateValue(List<Pizza> pizzas) {
+    private int totalSlices(Collection<Pizza> pizzas) {
         return pizzas.stream()
                 .reduce(0, (totalSlices, pizza) -> totalSlices += pizza.getSlices(), Integer::sum);
     }
