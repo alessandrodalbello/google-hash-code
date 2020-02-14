@@ -6,6 +6,7 @@ import org.hashcode2020.practice.io.PizzaInputReader;
 import org.hashcode2020.practice.io.PizzaOutputWriter;
 import org.hashcode2020.practice.model.PizzaInput;
 import org.hashcode2020.practice.model.PizzaOutput;
+import org.hashcode2020.practice.solvers.MultiRepetitiveGreedySolver;
 import org.hashcode2020.practice.solvers.RepetitiveGreedySolver;
 
 public class HashCodePractice extends HashCodeRunner<PizzaInput, PizzaOutput> {
@@ -25,7 +26,7 @@ public class HashCodePractice extends HashCodeRunner<PizzaInput, PizzaOutput> {
             }
 
             char inputPrefix = argument.charAt(0);
-            Solver<PizzaInput, PizzaOutput> solver = new RepetitiveGreedySolver();
+            Solver<PizzaInput, PizzaOutput> solver = new MultiRepetitiveGreedySolver();
             HashCodePractice hashCode = new HashCodePractice(inputPrefix, solver);
             hashCode.run();
         }

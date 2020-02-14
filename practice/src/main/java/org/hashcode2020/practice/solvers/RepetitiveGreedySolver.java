@@ -31,7 +31,13 @@ public class RepetitiveGreedySolver implements Solver<PizzaInput, PizzaOutput> {
             if (bestSolutionFound.getSolutionScore() < greedySolution.getSolutionScore()) {
                 bestSolutionFound = greedySolution;
             }
-            remainingPizzas.remove(remainingPizzas.size() - 1);
+
+            int pizzaTypeToRemove = remainingPizzas.size() - 1;
+            if (remainingPizzas.containsKey(pizzaTypeToRemove)) {
+                remainingPizzas.remove(pizzaTypeToRemove);
+            } else {
+                remainingPizzas.remove(pizzaTypeToRemove - 1);
+            }
             isBetterSolutionPossible = isBetterSolutionPossible(totalMaxSlices, bestSolutionFound, remainingPizzas.values());
         } while (isBetterSolutionPossible);
         return bestSolutionFound;
