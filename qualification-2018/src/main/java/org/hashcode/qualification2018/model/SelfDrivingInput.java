@@ -2,46 +2,47 @@ package org.hashcode.qualification2018.model;
 
 import java.util.List;
 
-import org.hashcode2020.InputData;
+import org.hashcode.InputData;
 
 public class SelfDrivingInput implements InputData {
 
-    private final int row;
-    private final int column;
-    private final int vehicles;
+    private final int mapRows;
+    private final int mapColumns;
+    private final int numberOfVehicles;
     private final int numberOfRides;
-    private final int bonus;
+    private final int bonusPoints;
     private final int maxSteps;
     private final List<Ride> rides;
 
-    public SelfDrivingInput(int row, int column, int vehicles, int numberOfRides, int bonus, int maxSteps, List<Ride> rides) {
-        this.row = row;
-        this.column = column;
-        this.vehicles = vehicles;
+    public SelfDrivingInput(int mapRows, int mapColumns, int numberOfVehicles, int numberOfRides, int bonusPoints,
+            int maxSteps, List<Ride> rides) {
+        this.mapRows = mapRows;
+        this.mapColumns = mapColumns;
+        this.numberOfVehicles = numberOfVehicles;
         this.numberOfRides = numberOfRides;
-        this.bonus = bonus;
+        this.bonusPoints = bonusPoints;
         this.maxSteps = maxSteps;
         this.rides = List.copyOf(rides);
     }
 
-    public int getRow() {
-        return row;
+    public int getMapRows() {
+        return mapRows;
     }
 
-    public int getColumn() {
-        return column;
+    public int getMapColumns() {
+        return mapColumns;
     }
 
-    public int getVehicles() {
-        return vehicles;
+    public int getNumberOfVehicles() {
+        return numberOfVehicles;
     }
 
     public int getNumberOfRides() {
         return numberOfRides;
     }
 
-    public int getBonus() {
-        return bonus;
+    public int getBonusPoints() {
+        return bonusPoints;
     }
 
     public int getMaxSteps() {
@@ -55,13 +56,14 @@ public class SelfDrivingInput implements InputData {
     @Override
     public String toString() {
         return SelfDrivingInput.class.getSimpleName() + "{" +
-                "row=" + row +
-                ", column=" + column +
-                ", vehicles=" + vehicles +
+                "mapRows=" + mapRows +
+                ", mapColumns=" + mapColumns +
+                ", numberOfVehicles=" + numberOfVehicles +
                 ", numberOfRides=" + numberOfRides +
-                ", bonus=" + bonus +
-                ", steps=" + maxSteps +
+                ", bonusPoints=" + bonusPoints +
+                ", maxSteps=" + maxSteps +
                 ", rides=" + rides +
                 "}";
     }
+
 }

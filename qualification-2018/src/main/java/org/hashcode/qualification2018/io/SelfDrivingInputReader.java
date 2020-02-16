@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.common.io.CharStreams;
+import org.hashcode.io.InputReader;
 import org.hashcode.qualification2018.model.Position;
 import org.hashcode.qualification2018.model.Ride;
 import org.hashcode.qualification2018.model.SelfDrivingInput;
-import org.hashcode2020.io.InputReader;
 
 public class SelfDrivingInputReader extends InputReader<SelfDrivingInput> {
 
@@ -37,28 +37,24 @@ public class SelfDrivingInputReader extends InputReader<SelfDrivingInput> {
     public SelfDrivingInput readFile(Readable readable) throws IOException {
         List<String> lines = CharStreams.readLines(readable);
         String[] problemTokens = lines.get(0).trim().split("\\s");
-        int rows = Integer.parseInt(problemTokens[0]);
-        int columns = Integer.parseInt(problemTokens[1]);
-        int vehicles = Integer.parseInt(problemTokens[2]);
+        int mapRows = Integer.parseInt(problemTokens[0]);
+        int mapColumns = Integer.parseInt(problemTokens[1]);
+        int numberOfVehicles = Integer.parseInt(problemTokens[2]);
         int numberOfRides = Integer.parseInt(problemTokens[3]);
-        int bonus = Integer.parseInt(problemTokens[4]);
-        int steps = Integer.parseInt(problemTokens[5]);
+        int bonusPoints = Integer.parseInt(problemTokens[4]);
+        int maxSteps = Integer.parseInt(problemTokens[5]);
 
         List<Ride> rides = new ArrayList<>(numberOfRides);
         for (int i = 1; i < lines.size(); i++) {
             String[] rideTokens = lines.get(i).trim().split("\\s");
-            int xStart = Integer.parseInt(rideTokens[0]);
-            int yStart = Integer.parseInt(rideTokens[1]);
-            Position start = new Position(xStart, yStart);
-            int xFinish = Integer.parseInt(rideTokens[2]);
-            int yFinish = Integer.parseInt(rideTokens[3]);
-            Position finish = new Position(xFinish, yFinish);
-            int earliestStart = Integer.parseInt(rideTokens[4]);
-            int latestFinish = Integer.parseInt(rideTokens[5]);
-            Ride ride = new Ride(i - 1, start, finish, earliestStart, latestFinish);
+            Position startPosition = new Position(Integer.parseInt(rideTokens[0]), Integer.parseInt(rideTokens[1]));
+            Position finishPosition = new Position(Integer.parseInt(rideTokens[2]), Integer.parseInt(rideTokens[3]));
+            int earliestStartTime = Integer.parseInt(rideTokens[4]);
+            int latestFinishTime = Integer.parseInt(rideTokens[5]);
+            Ride ride = new Ride(i - 1, startPosition, finishPosition, earliestStartTime, latestFinishTime);
             rides.add(ride);
         }
-        return new SelfDrivingInput(rows, columns, vehicles, numberOfRides, bonus, steps, rides);
+        return new SelfDrivingInput(mapRows, mapColumns, numberOfVehicles, numberOfRides, bonusPoints, maxSteps, rides);
     }
 
 }

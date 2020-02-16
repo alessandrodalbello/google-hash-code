@@ -18,7 +18,7 @@ public class Ride {
         this.id = id;
         this.startPosition = startPosition;
         this.finishPosition = finishPosition;
-        this.distance = Math.abs(startPosition.getX() - finishPosition.getX()) + Math.abs(startPosition.getY() - finishPosition.getY());
+        this.distance = startPosition.distanceFrom(finishPosition);
         this.earliestStartTime = earliestStartTime;
         this.latestFinishTime = latestFinishTime;
     }
@@ -84,8 +84,8 @@ public class Ride {
                 ", startPosition=" + startPosition +
                 ", finishPosition=" + finishPosition +
                 ", distance=" + distance +
-                ", earliestStart=" + earliestStartTime +
-                ", latestFinish=" + latestFinishTime +
+                ", earliestStartTime=" + earliestStartTime +
+                ", latestFinishTime=" + latestFinishTime +
                 ", startTime=" + startTime +
                 ", finishTime=" + finishTime +
                 "}";

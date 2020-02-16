@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Vehicle {
+public class VehicleRides {
 
     private final int id;
     private final List<Ride> rides;
@@ -12,7 +12,7 @@ public class Vehicle {
     private int currentTime;
     private Position currentPosition;
 
-    public Vehicle(int id) {
+    public VehicleRides(int id) {
         this.id = id;
         this.rides = new ArrayList<>();
 
@@ -24,8 +24,8 @@ public class Vehicle {
         return id;
     }
 
-    public int getNumberOfRides() {
-        return rides.size();
+    public List<Ride> getRides() {
+        return List.copyOf(rides);
     }
 
     public int getCurrentTime() {
@@ -36,24 +36,21 @@ public class Vehicle {
         return currentPosition;
     }
 
-    public List<Ride> getRides() {
-        return List.copyOf(rides);
-    }
-
     public void addRide(Ride ride) {
         rides.add(ride);
+
         int transferTime = transferTime(ride.getStartPosition());
         int waitingTime = waitingTime(transferTime, ride.getEarliestStartTime());
         currentTime += transferTime + waitingTime + ride.getDistance();
         currentPosition = ride.getFinishPosition();
     }
 
-    public int transferTime(Position startingPosition) {
-        return Math.abs(startingPosition.getX() - currentPosition.getX()) + Math.abs(startingPosition.getY() - currentPosition.getY());
+    public int transferTime(Position rideStartPosition) {
+        return rideStartPosition.distanceFrom(currentPosition);
     }
 
-    public int waitingTime(int transferTime, int earliestStartingTime) {
-        return (currentTime + transferTime) < earliestStartingTime ? earliestStartingTime - (currentTime + transferTime) : 0;
+    public int waitingTime(int transferTime, int rideEarliestStartingTime) {
+        return (currentTime + transferTime) < rideEarliestStartingTime ? rideEarliestStartingTime - (currentTime + transferTime) : 0;
     }
 
     @Override
@@ -64,7 +61,7 @@ public class Vehicle {
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        Vehicle other = (Vehicle) obj;
+        VehicleRides other = (VehicleRides) obj;
         return Objects.equals(this.id, other.id);
     }
 
@@ -75,7 +72,7 @@ public class Vehicle {
 
     @Override
     public String toString() {
-        return Vehicle.class.getSimpleName() + "{" +
+        return VehicleRides.class.getSimpleName() + "{" +
                 "id=" + id +
                 ", rides=" + rides +
                 "}";

@@ -8,10 +8,8 @@ import java.util.stream.Collectors;
 
 import com.google.common.io.CharSink;
 import com.google.common.io.Files;
-import org.hashcode.qualification2018.model.Ride;
+import org.hashcode.io.OutputWriter;
 import org.hashcode.qualification2018.model.SelfDrivingOutput;
-import org.hashcode.qualification2018.model.Vehicle;
-import org.hashcode2020.io.OutputWriter;
 
 public class SelfDrivingOutputWriter extends OutputWriter<SelfDrivingOutput> {
 
@@ -30,14 +28,12 @@ public class SelfDrivingOutputWriter extends OutputWriter<SelfDrivingOutput> {
 
     @Override
     protected void writeFile(SelfDrivingOutput outputData, File outputFile) throws IOException {
-        List<Vehicle> vehicles = outputData.getVehicles();
-        List<String> vehicleRidesOutput = vehicles.stream()
-                .map(vehicleRide -> {
-                    List<String> rides = vehicleRide.getRides().stream()
-                            .map(Ride::getId)
-                            .map(String::valueOf)
+        List<String> vehicleRidesOutput = outputData.getVehiclesRides().stream()
+                .map(vehicleRides -> {
+                    List<String> rides = vehicleRides.getRides().stream()
+                            .map(ride -> String.valueOf(ride.getId()))
                             .collect(Collectors.toList());
-                    return vehicleRide.getNumberOfRides() + " " + String.join(" ", rides);
+                    return rides.size() + " " + String.join(" ", rides);
                 }).collect(Collectors.toList());
         CharSink charSink = Files.asCharSink(outputFile, StandardCharsets.UTF_8);
         charSink.writeLines(vehicleRidesOutput);

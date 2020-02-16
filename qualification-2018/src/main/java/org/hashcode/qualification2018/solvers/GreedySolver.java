@@ -7,41 +7,42 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.hashcode2020.Solver;
+import org.hashcode.Solver;
 import org.hashcode.qualification2018.model.Ride;
 import org.hashcode.qualification2018.model.SelfDrivingInput;
 import org.hashcode.qualification2018.model.SelfDrivingOutput;
-import org.hashcode.qualification2018.model.Vehicle;
+import org.hashcode.qualification2018.model.VehicleRides;
 
 public class GreedySolver implements Solver<SelfDrivingInput, SelfDrivingOutput> {
 
-    private Map<Integer, Vehicle> vehicles;
+    private Map<Integer, VehicleRides> vehiclesRides;
 
     @Override
     public SelfDrivingOutput solve(SelfDrivingInput inputData) {
-        vehicles = new HashMap<>();
-        for (int i = 0; i < inputData.getVehicles(); i++) {
-            vehicles.put(i, new Vehicle(i));
+        vehiclesRides = new HashMap<>();
+        for (int i = 0; i < inputData.getNumberOfVehicles(); i++) {
+            vehiclesRides.put(i, new VehicleRides(i));
         }
 
-        List<Ride> priorityQueue = inputData.getRides().stream()
+        List<Ride> ridesPriorityQueue = inputData.getRides().stream()
                 .sorted(Comparator.comparingInt(Ride::getLatestFinishTime))
                 .collect(Collectors.toList());
-        for (Ride ride : priorityQueue) {
-            Optional<Vehicle> optionalVehicle = chooseVehicle(ride);
-            optionalVehicle.ifPresent(vehicle -> {
-                int transferTime = vehicle.transferTime(ride.getStartPosition());
-                int startTime = vehicle.getCurrentTime() + transferTime + vehicle.waitingTime(transferTime, ride.getEarliestStartTime());
+        for (Ride ride : ridesPriorityQueue) {
+            Optional<VehicleRides> optionalVehicleRides = chooseVehicle(ride);
+            optionalVehicleRides.ifPresent(vehicleRides -> {
+                int transferTime = vehicleRides.transferTime(ride.getStartPosition());
+                int startTime = vehicleRides.getCurrentTime() + transferTime + vehicleRides.waitingTime(transferTime, ride.getEarliestStartTime());
                 ride.setStartTime(startTime);
-                vehicle.addRide(ride);
+                vehicleRides.addRide(ride);
             });
         }
-        return new SelfDrivingOutput(inputData.getBonus(), List.copyOf(vehicles.values()));
+        return new SelfDrivingOutput(inputData.getBonusPoints(), List.copyOf(vehiclesRides.values()));
     }
 
-    private Optional<Vehicle> chooseVehicle(Ride ride) {
-        return vehicles.values().stream()
-                .filter(vehicle -> ride.getLatestFinishTime() - ride.getDistance() - vehicle.transferTime(ride.getStartPosition()) >= vehicle.getCurrentTime())
+    private Optional<VehicleRides> chooseVehicle(Ride ride) {
+        return vehiclesRides.values().stream()
+                .filter(vehicleRides -> ride.getLatestFinishTime() - ride.getDistance() -
+                        vehicleRides.transferTime(ride.getStartPosition()) >= vehicleRides.getCurrentTime())
                 .findAny();
     }
 

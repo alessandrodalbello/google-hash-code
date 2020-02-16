@@ -20,6 +20,10 @@ public class Position {
         return y;
     }
 
+    public int distanceFrom(Position otherPosition) {
+        return Math.abs(x - otherPosition.getX()) + Math.abs(y - otherPosition.getY());
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

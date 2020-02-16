@@ -1,12 +1,12 @@
 package org.hashcode.qualification2018;
 
+import org.hashcode.HashCodeRunner;
+import org.hashcode.Solver;
 import org.hashcode.qualification2018.io.SelfDrivingInputReader;
 import org.hashcode.qualification2018.io.SelfDrivingOutputWriter;
 import org.hashcode.qualification2018.model.SelfDrivingInput;
 import org.hashcode.qualification2018.model.SelfDrivingOutput;
 import org.hashcode.qualification2018.solvers.GreedySolver;
-import org.hashcode2020.HashCodeRunner;
-import org.hashcode2020.Solver;
 
 public class HashCodeSelfDriving extends HashCodeRunner<SelfDrivingInput, SelfDrivingOutput> {
 
