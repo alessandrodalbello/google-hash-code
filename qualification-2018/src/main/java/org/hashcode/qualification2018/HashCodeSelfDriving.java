@@ -6,7 +6,7 @@ import org.hashcode.qualification2018.io.SelfDrivingInputReader;
 import org.hashcode.qualification2018.io.SelfDrivingOutputWriter;
 import org.hashcode.qualification2018.model.SelfDrivingInput;
 import org.hashcode.qualification2018.model.SelfDrivingOutput;
-import org.hashcode.qualification2018.solvers.GreedySolver;
+import org.hashcode.qualification2018.solvers.ByLatestFinishTimeAnyAvailableVehicleSolver;
 
 public class HashCodeSelfDriving extends HashCodeRunner<SelfDrivingInput, SelfDrivingOutput> {
 
@@ -25,7 +25,7 @@ public class HashCodeSelfDriving extends HashCodeRunner<SelfDrivingInput, SelfDr
             }
 
             char inputPrefix = argument.charAt(0);
-            Solver<SelfDrivingInput, SelfDrivingOutput> solver = new GreedySolver();
+            Solver<SelfDrivingInput, SelfDrivingOutput> solver = new ByLatestFinishTimeAnyAvailableVehicleSolver();
             HashCodeSelfDriving hashCode = new HashCodeSelfDriving(inputPrefix, solver);
             hashCode.run();
         }
