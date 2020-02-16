@@ -1,7 +1,6 @@
 package org.hashcode.qualification2018.solvers;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -15,20 +14,25 @@ import org.hashcode.qualification2018.model.SelfDrivingInput;
 import org.hashcode.qualification2018.model.SelfDrivingOutput;
 import org.hashcode.qualification2018.model.Vehicle;
 
-public class ByLatestFinishTimeAnyAvailableVehicleSolver implements Solver<SelfDrivingInput, SelfDrivingOutput> {
+class FleetSchedulerSolver implements Solver<SelfDrivingInput, SelfDrivingOutput> {
+
+    private final RidesSorter ridesSorter;
+    private final VehicleSelector vehicleSelector;
 
     private Map<Vehicle, List<Ride>> vehiclesRides;
+
+    public FleetSchedulerSolver(RidesSorter ridesSorter, VehicleSelector vehicleSelector) {
+        this.ridesSorter = ridesSorter;
+        this.vehicleSelector = vehicleSelector;
+    }
 
     @Override
     public SelfDrivingOutput solve(SelfDrivingInput inputData) {
         vehiclesRides = initVehicles(inputData.getNumberOfVehicles());
 
-        List<Ride> ridesPriorityQueue = inputData.getRides().stream()
-                .sorted(Comparator.comparingInt(Ride::getLatestFinishTime))
-                .collect(Collectors.toList());
-
-        for (Ride ride : ridesPriorityQueue) {
-            Optional<Vehicle> optionalVehicle = selectVehicle(ride);
+        List<Ride> ridesByPriority = ridesSorter.sortByPriority(inputData.getRides());
+        for (Ride ride : ridesByPriority) {
+            Optional<Vehicle> optionalVehicle = vehicleSelector.selectVehicle(ride, vehiclesRides.keySet());
             optionalVehicle.ifPresent(vehicle -> {
                 vehicle.doRide(ride);
                 ride.setStartTime(vehicle.getCurrentStartTime());
@@ -42,13 +46,6 @@ public class ByLatestFinishTimeAnyAvailableVehicleSolver implements Solver<SelfD
         return IntStream.range(0, numberOfVehicles)
                 .mapToObj(Vehicle::new)
                 .collect(Collectors.toUnmodifiableMap(Function.identity(), vehicle -> new ArrayList<>()));
-    }
-
-    private Optional<Vehicle> selectVehicle(Ride ride) {
-        return vehiclesRides.keySet().stream()
-                .filter(vehicle -> ride.getLatestFinishTime() >
-                        vehicle.getCurrentFinishTime() + vehicle.transferTime(ride.getStartPosition()) + ride.getDistance())
-                .findAny();
     }
 
 }
