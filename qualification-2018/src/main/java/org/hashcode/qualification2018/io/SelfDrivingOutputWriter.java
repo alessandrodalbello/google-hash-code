@@ -1,4 +1,4 @@
-package org.hashcode2020.selfdriving.io;
+package org.hashcode.qualification2018.io;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,10 +8,10 @@ import java.util.stream.Collectors;
 
 import com.google.common.io.CharSink;
 import com.google.common.io.Files;
+import org.hashcode.qualification2018.model.Ride;
+import org.hashcode.qualification2018.model.SelfDrivingOutput;
+import org.hashcode.qualification2018.model.Vehicle;
 import org.hashcode2020.io.OutputWriter;
-import org.hashcode2020.selfdriving.model.Ride;
-import org.hashcode2020.selfdriving.model.SelfDrivingOutput;
-import org.hashcode2020.selfdriving.model.Vehicle;
 
 public class SelfDrivingOutputWriter extends OutputWriter<SelfDrivingOutput> {
 

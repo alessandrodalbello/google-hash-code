@@ -1,14 +1,14 @@
-package org.hashcode2020.selfdriving.io;
+package org.hashcode.qualification2018.io;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.google.common.io.CharStreams;
+import org.hashcode.qualification2018.model.Position;
+import org.hashcode.qualification2018.model.Ride;
+import org.hashcode.qualification2018.model.SelfDrivingInput;
 import org.hashcode2020.io.InputReader;
-import org.hashcode2020.selfdriving.model.Position;
-import org.hashcode2020.selfdriving.model.Ride;
-import org.hashcode2020.selfdriving.model.SelfDrivingInput;
 
 public class SelfDrivingInputReader extends InputReader<SelfDrivingInput> {
 

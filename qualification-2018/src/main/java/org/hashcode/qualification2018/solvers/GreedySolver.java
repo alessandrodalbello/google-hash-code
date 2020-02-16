@@ -1,4 +1,4 @@
-package org.hashcode2020.selfdriving.solvers;
+package org.hashcode.qualification2018.solvers;
 
 import java.util.Comparator;
 import java.util.HashMap;
@@ -8,10 +8,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.hashcode2020.Solver;
-import org.hashcode2020.selfdriving.model.Ride;
-import org.hashcode2020.selfdriving.model.SelfDrivingInput;
-import org.hashcode2020.selfdriving.model.SelfDrivingOutput;
-import org.hashcode2020.selfdriving.model.Vehicle;
+import org.hashcode.qualification2018.model.Ride;
+import org.hashcode.qualification2018.model.SelfDrivingInput;
+import org.hashcode.qualification2018.model.SelfDrivingOutput;
+import org.hashcode.qualification2018.model.Vehicle;
 
 public class GreedySolver implements Solver<SelfDrivingInput, SelfDrivingOutput> {
 

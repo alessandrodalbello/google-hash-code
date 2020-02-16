@@ -1,4 +1,4 @@
-package org.hashcode2020.selfdriving.model;
+package org.hashcode.qualification2018.model;
 
 import java.util.ArrayList;
 import java.util.List;
