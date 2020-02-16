@@ -1,4 +1,4 @@
-package org.hashcode2020.practice.solvers;
+package org.hashcode.practice2020.solvers;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import org.hashcode2020.Solver;
-import org.hashcode2020.practice.model.Pizza;
-import org.hashcode2020.practice.model.PizzaInput;
-import org.hashcode2020.practice.model.PizzaOutput;
+import org.hashcode.practice2020.model.Pizza;
+import org.hashcode.practice2020.model.PizzaInput;
+import org.hashcode.practice2020.model.PizzaOutput;
+import org.hashcode.Solver;
 
 public class AccurateSolver implements Solver<PizzaInput, PizzaOutput> {
 

@@ -1,8 +1,8 @@
-package org.hashcode2020.practice.model;
+package org.hashcode.practice2020.model;
 
 import java.util.List;
 
-import org.hashcode2020.OutputData;
+import org.hashcode.OutputData;
 
 public class PizzaOutput implements OutputData {
 

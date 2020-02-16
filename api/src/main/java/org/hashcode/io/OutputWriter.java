@@ -1,9 +1,9 @@
-package org.hashcode2020.io;
+package org.hashcode.io;
 
 import java.io.File;
 import java.io.IOException;
 
-import org.hashcode2020.OutputData;
+import org.hashcode.OutputData;
 
 public abstract class OutputWriter<OUT extends OutputData> {
 

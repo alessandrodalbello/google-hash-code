@@ -1,9 +1,9 @@
-# Google Hash Code 2020
+# Google Hash Code
 ![build](https://github.com/alessandrodalbello/google-hash-code-2020/workflows/Google%20Hash%20Code%202020%20-%20Java%20CI/badge.svg?branch=master&event=push)
 ![java: jdk11](https://img.shields.io/badge/java-JDK%2011-red)
 [![license: MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-Solutions for all the rounds of Google Hash Code 2020 competition.
+Have fun with Google Hash Code competition! :nerd_face::computer:
 
 ## How to
 
@@ -22,7 +22,7 @@ Solutions for all the rounds of Google Hash Code 2020 competition.
    for instance
 
     ```shell script
-    $ java -jar target/hashcode-2020-practice-exec.jar a b c
+    $ java -jar target/hashcode-practice-2020-exec.jar a b c d e
     ```
 
  - Zip source code into an archive (from module):

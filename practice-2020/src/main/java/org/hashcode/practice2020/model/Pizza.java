@@ -1,4 +1,4 @@
-package org.hashcode2020.practice.model;
+package org.hashcode.practice2020.model;
 
 import java.util.Objects;
 

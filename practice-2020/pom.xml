@@ -6,18 +6,18 @@
 
     <parent>
         <groupId>org.hashcode</groupId>
-        <artifactId>hashcode-2020</artifactId>
+        <artifactId>hashcode</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>hashcode-2020-practice</artifactId>
+    <artifactId>hashcode-practice-2020</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
         <!-- Internal dependencies -->
         <dependency>
             <groupId>org.hashcode</groupId>
-            <artifactId>hashcode-2020-api</artifactId>
+            <artifactId>hashcode-api</artifactId>
             <version>${project.version}</version>
         </dependency>
 
@@ -43,7 +43,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>org.hashcode2020.practice.HashCodePractice</mainClass>
+                                    <mainClass>org.hashcode.practice2020.HashCodePractice</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>
