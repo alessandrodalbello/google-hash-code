@@ -1,10 +1,10 @@
-package org.hashcode2020;
+package org.hashcode;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import org.hashcode2020.io.InputReader;
-import org.hashcode2020.io.OutputWriter;
+import org.hashcode.io.InputReader;
+import org.hashcode.io.OutputWriter;
 
 public abstract class HashCodeRunner<IN extends InputData, OUT extends OutputData> implements Runnable {
 

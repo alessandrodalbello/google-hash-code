@@ -1,4 +1,4 @@
-package org.hashcode2020.practice.io;
+package org.hashcode.practice2020.io;
 
 import java.io.IOException;
 import java.util.List;
@@ -6,9 +6,9 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import com.google.common.io.CharStreams;
-import org.hashcode2020.io.InputReader;
-import org.hashcode2020.practice.model.Pizza;
-import org.hashcode2020.practice.model.PizzaInput;
+import org.hashcode.io.InputReader;
+import org.hashcode.practice2020.model.Pizza;
+import org.hashcode.practice2020.model.PizzaInput;
 
 public class PizzaInputReader extends InputReader<PizzaInput> {
 

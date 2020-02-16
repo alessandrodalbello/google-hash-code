@@ -1,4 +1,4 @@
-name: Google Hash Code 2020 - Java CI
+name: Google Hash Code - Java CI
 
 on:
   push:

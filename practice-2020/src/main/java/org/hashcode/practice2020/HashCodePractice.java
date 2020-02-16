@@ -1,13 +1,12 @@
-package org.hashcode2020.practice;
+package org.hashcode.practice2020;
 
-import org.hashcode2020.HashCodeRunner;
-import org.hashcode2020.Solver;
-import org.hashcode2020.practice.io.PizzaInputReader;
-import org.hashcode2020.practice.io.PizzaOutputWriter;
-import org.hashcode2020.practice.model.PizzaInput;
-import org.hashcode2020.practice.model.PizzaOutput;
-import org.hashcode2020.practice.solvers.MultiRepetitiveGreedySolver;
-import org.hashcode2020.practice.solvers.RepetitiveGreedySolver;
+import org.hashcode.practice2020.io.PizzaInputReader;
+import org.hashcode.practice2020.model.PizzaInput;
+import org.hashcode.practice2020.model.PizzaOutput;
+import org.hashcode.practice2020.solvers.MultiRepetitiveGreedySolver;
+import org.hashcode.HashCodeRunner;
+import org.hashcode.Solver;
+import org.hashcode.practice2020.io.PizzaOutputWriter;
 
 public class HashCodePractice extends HashCodeRunner<PizzaInput, PizzaOutput> {
 

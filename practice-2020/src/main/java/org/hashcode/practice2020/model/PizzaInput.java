@@ -1,11 +1,11 @@
-package org.hashcode2020.practice.model;
+package org.hashcode.practice2020.model;
 
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import org.hashcode2020.InputData;
+import org.hashcode.InputData;
 
 public class PizzaInput implements InputData {
 
