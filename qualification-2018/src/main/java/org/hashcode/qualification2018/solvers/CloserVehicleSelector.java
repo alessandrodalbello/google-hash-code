@@ -7,7 +7,7 @@ import java.util.Set;
 import org.hashcode.qualification2018.model.Ride;
 import org.hashcode.qualification2018.model.Vehicle;
 
-class CloserWhichCompletesVehicleSelector implements VehicleSelector {
+class CloserVehicleSelector implements VehicleSelector {
 
     @Override
     public Optional<Vehicle> selectVehicle(Ride ride, Set<Vehicle> vehicles) {
