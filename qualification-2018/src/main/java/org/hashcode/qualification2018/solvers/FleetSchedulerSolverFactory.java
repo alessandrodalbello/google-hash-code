@@ -6,6 +6,9 @@ import org.hashcode.qualification2018.model.SelfDrivingOutput;
 
 public class FleetSchedulerSolverFactory {
 
+    /*
+     * By latest finish time
+     */
     public static Solver<SelfDrivingInput, SelfDrivingOutput> byLatestFinishTimeAnyVehicle() {
         return new FleetSchedulerSolver(new ByLatestFinishTimeRidesSorter(), new AnyVehicleSelector());
     }
@@ -22,6 +25,9 @@ public class FleetSchedulerSolverFactory {
         return new FleetSchedulerSolver(new ByLatestFinishTimeRidesSorter(), new MaximiseBonusVehicleSelector());
     }
 
+    /*
+     * By earliest finish time
+     */
     public static Solver<SelfDrivingInput, SelfDrivingOutput> byEarliestFinishTimeAnyVehicle() {
         return new FleetSchedulerSolver(new ByEarliestFinishTimeRidesSorter(), new AnyVehicleSelector());
     }
@@ -36,6 +42,25 @@ public class FleetSchedulerSolverFactory {
 
     public static Solver<SelfDrivingInput, SelfDrivingOutput> byEarliestFinishTimeMaximiseBonusVehicle() {
         return new FleetSchedulerSolver(new ByEarliestFinishTimeRidesSorter(), new MaximiseBonusVehicleSelector());
+    }
+
+    /*
+     * By distance
+     */
+    public static Solver<SelfDrivingInput, SelfDrivingOutput> byDistanceAnyVehicle() {
+        return new FleetSchedulerSolver(new ByDistanceRidesSorter(), new AnyVehicleSelector());
+    }
+
+    public static Solver<SelfDrivingInput, SelfDrivingOutput> byDistanceCloserVehicle() {
+        return new FleetSchedulerSolver(new ByDistanceRidesSorter(), new CloserVehicleSelector());
+    }
+
+    public static Solver<SelfDrivingInput, SelfDrivingOutput> byDistanceMinimumWaitingVehicle() {
+        return new FleetSchedulerSolver(new ByDistanceRidesSorter(), new MinimumWaitingVehicleSelector());
+    }
+
+    public static Solver<SelfDrivingInput, SelfDrivingOutput> byDistanceMaximiseBonusVehicle() {
+        return new FleetSchedulerSolver(new ByDistanceRidesSorter(), new MaximiseBonusVehicleSelector());
     }
 
 }
