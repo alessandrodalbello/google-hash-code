@@ -18,6 +18,10 @@ public class FleetSchedulerSolverFactory {
         return new FleetSchedulerSolver(new ByLatestFinishTimeRidesSorter(), new MinimumWaitingVehicleSelector());
     }
 
+    public static Solver<SelfDrivingInput, SelfDrivingOutput> byLatestFinishTimeMaximiseBonusVehicle() {
+        return new FleetSchedulerSolver(new ByLatestFinishTimeRidesSorter(), new MaximiseBonusVehicleSelector());
+    }
+
     public static Solver<SelfDrivingInput, SelfDrivingOutput> byEarliestFinishTimeAnyVehicle() {
         return new FleetSchedulerSolver(new ByEarliestFinishTimeRidesSorter(), new AnyVehicleSelector());
     }
@@ -28,6 +32,10 @@ public class FleetSchedulerSolverFactory {
 
     public static Solver<SelfDrivingInput, SelfDrivingOutput> byEarliestFinishTimeMinimumWaitingVehicle() {
         return new FleetSchedulerSolver(new ByEarliestFinishTimeRidesSorter(), new MinimumWaitingVehicleSelector());
+    }
+
+    public static Solver<SelfDrivingInput, SelfDrivingOutput> byEarliestFinishTimeMaximiseBonusVehicle() {
+        return new FleetSchedulerSolver(new ByEarliestFinishTimeRidesSorter(), new MaximiseBonusVehicleSelector());
     }
 
 }
