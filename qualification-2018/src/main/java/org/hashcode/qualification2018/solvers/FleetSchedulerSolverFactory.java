@@ -82,4 +82,11 @@ public class FleetSchedulerSolverFactory {
         return new FleetSchedulerSolver(new ByDistanceRidesSorter(), new MaximiseBonusVehicleSelector());
     }
 
+    /*
+     * Complex solver
+     */
+    public static Solver<SelfDrivingInput, SelfDrivingOutput> complexSolver() {
+        return new FleetSchedulerSolver(new ComplexRidesSorter(), new ComplexVehicleSelector());
+    }
+
 }

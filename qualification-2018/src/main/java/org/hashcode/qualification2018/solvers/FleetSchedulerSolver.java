@@ -32,7 +32,7 @@ class FleetSchedulerSolver implements Solver<SelfDrivingInput, SelfDrivingOutput
 
         List<Ride> ridesByPriority = ridesSorter.sortByPriority(inputData.getRides());
         for (Ride ride : ridesByPriority) {
-            Optional<Vehicle> optionalVehicle = vehicleSelector.selectVehicle(ride, vehiclesRides.keySet());
+            Optional<Vehicle> optionalVehicle = vehicleSelector.selectVehicle(ride, vehiclesRides.keySet(), inputData.getBonusPoints());
             optionalVehicle.ifPresent(vehicle -> {
                 vehicle.doRide(ride);
                 ride.setStartTime(vehicle.getCurrentStartTime());

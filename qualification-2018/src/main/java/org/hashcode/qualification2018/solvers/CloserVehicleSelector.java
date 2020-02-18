@@ -10,11 +10,11 @@ import org.hashcode.qualification2018.model.Vehicle;
 class CloserVehicleSelector implements VehicleSelector {
 
     @Override
-    public Optional<Vehicle> selectVehicle(Ride ride, Set<Vehicle> vehicles) {
+    public Optional<Vehicle> selectVehicle(Ride ride, Set<Vehicle> vehicles, int bonusPoints) {
         return vehicles.stream()
                 .filter(vehicle -> ride.getLatestFinishTime() >
                         vehicle.getCurrentFinishTime() + vehicle.transferTime(ride.getStartPosition()) + ride.getDistance())
-                .min(Comparator.comparingInt(vehicle -> vehicle.getCurrentPosition().distanceFrom(ride.getStartPosition())));
+                .min(Comparator.comparingInt(vehicle -> vehicle.transferTime(ride.getStartPosition())));
     }
 
 }

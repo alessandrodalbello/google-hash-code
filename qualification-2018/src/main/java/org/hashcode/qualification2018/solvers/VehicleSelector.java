@@ -8,6 +8,6 @@ import org.hashcode.qualification2018.model.Vehicle;
 
 interface VehicleSelector {
 
-    Optional<Vehicle> selectVehicle(Ride ride, Set<Vehicle> vehicles);
+    Optional<Vehicle> selectVehicle(Ride ride, Set<Vehicle> vehicles, int bonusPoints);
 
 }

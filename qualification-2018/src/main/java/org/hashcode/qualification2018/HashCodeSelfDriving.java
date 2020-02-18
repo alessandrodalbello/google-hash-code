@@ -25,7 +25,7 @@ public class HashCodeSelfDriving extends HashCodeRunner<SelfDrivingInput, SelfDr
             }
 
             char inputPrefix = argument.charAt(0);
-            Solver<SelfDrivingInput, SelfDrivingOutput> solver = FleetSchedulerSolverFactory.byEarliestStartTimeMaximiseBonusVehicle();
+            Solver<SelfDrivingInput, SelfDrivingOutput> solver = FleetSchedulerSolverFactory.complexSolver();
             HashCodeSelfDriving hashCode = new HashCodeSelfDriving(inputPrefix, solver);
             hashCode.run();
         }
