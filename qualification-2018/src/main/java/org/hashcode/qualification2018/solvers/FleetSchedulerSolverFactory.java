@@ -45,6 +45,25 @@ public class FleetSchedulerSolverFactory {
     }
 
     /*
+     * By earliest start time
+     */
+    public static Solver<SelfDrivingInput, SelfDrivingOutput> byEarliestStartTimeAnyVehicle() {
+        return new FleetSchedulerSolver(new ByEarliestStartTimeRidesSorter(), new AnyVehicleSelector());
+    }
+
+    public static Solver<SelfDrivingInput, SelfDrivingOutput> byEarliestStartTimeCloserVehicle() {
+        return new FleetSchedulerSolver(new ByEarliestStartTimeRidesSorter(), new CloserVehicleSelector());
+    }
+
+    public static Solver<SelfDrivingInput, SelfDrivingOutput> byEarliestStartTimeMinimumWaitingVehicle() {
+        return new FleetSchedulerSolver(new ByEarliestStartTimeRidesSorter(), new MinimumWaitingVehicleSelector());
+    }
+
+    public static Solver<SelfDrivingInput, SelfDrivingOutput> byEarliestStartTimeMaximiseBonusVehicle() {
+        return new FleetSchedulerSolver(new ByEarliestStartTimeRidesSorter(), new MaximiseBonusVehicleSelector());
+    }
+
+    /*
      * By distance
      */
     public static Solver<SelfDrivingInput, SelfDrivingOutput> byDistanceAnyVehicle() {

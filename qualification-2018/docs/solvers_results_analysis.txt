@@ -1,0 +1,143 @@
+byLatestFinishTimeAnyVehicle:
+  a: 10
+  b: 172477
+  c: 8188764
+  d: 9168247
+  e: 12395975
+  TOT: 29925473
+
+byLatestFinishTimeCloserVehicle:
+  a: 10
+  b: 173927
+  c: 13052406
+  d: 10017483
+  e: 14747975
+  TOT: 37991801
+
+byLatestFinishTimeMinimumWaitingVehicle:
+  a: 10
+  b: 174952
+  c: 6721088
+  d: 6793114
+  e: 13263975
+  TOT: 26953139
+
+byLatestFinishTimeMaximiseBonusVehicle:
+  a: 10
+  b: 176877
+  c: 13052406
+  d: 9307843
+  e: 21436975
+  TOT: 43974111
+
+-----------------------------------------
+
+byEarliestFinishTimeAnyVehicle:
+  a: 10
+  b: 172327
+  c: 6765612
+  d: 7902029
+  e: 12556975
+  TOT: 27396953
+
+byEarliestFinishTimeCloserVehicle:
+  a: 10
+  b: 173827
+  c: 12318811
+  d: 10300075
+  e: 15143975
+  TOT: 37936698
+
+byEarliestFinishTimeMinimumWaitingVehicle:
+  a: 4
+  b: 174927
+  c: 5220396
+  d: 6631677
+  e: 13221975
+  TOT: 25248979
+
+byEarliestFinishTimeMaximiseBonusVehicle:
+  a: 10
+  b: 176877
+  c: 12318811
+  d: 10852880
+  e: 21461975
+  TOT: 44810553
+
+-----------------------------------------
+
+  byEarliestStartTimeAnyVehicle:
+  a: 10
+  b: 172027
+  c: 8188764
+  d: 8005278
+  e: 15228975
+  TOT: 28844054
+
+  byEarliestStartTimeCloserVehicle:
+  a: 10
+  b: 173927
+  c: 13052406
+  d: 9784353
+  e: 15143975
+  TOT: 38239671
+
+  byEarliestStartTimeMinimumWaitingVehicle:
+  a: 4
+  b: 174852
+  c: 6721088
+  d: 7020409
+  e: 13152975
+  TOT: 27069328
+
+  byEarliestStartTimeMaximiseBonusVehicle:
+  a: 10
+  b: 176877
+  c: 13052406
+  d: 11308663
+  e: 21461975
+  TOT: 45999931
+
+-----------------------------------------
+
+byDistanceAnyVehicle:
+  a: 10
+  b: 175127
+  c: 6765612
+  d: 3908442
+  e: 15303975
+  TOT: 26153166
+
+byDistanceCloserVehicle:
+  a: 10
+  b: 176177
+  c: 12318811
+  d: 3592837
+  e: 5023259
+  TOT: 21111094
+
+byDistanceMinimumWaitingVehicle:
+  a: 4
+  b: 150779
+  c: 5220396
+  d: 1559207
+  e: 4122156
+  TOT: 11052542
+
+byDistanceMaximiseBonusVehicle:
+  a: 10
+  b: 145049
+  c: 12318811
+  d: 1805306
+  e: 4352911
+  TOT: 18622087
+
+-----------------------------------------
+
+BEST COMBINATION:
+  a: 10
+  b: 176877
+  c: 13052406
+  d: 11308663
+  e: 21461975
+  TOT: 45999931
