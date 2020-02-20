@@ -1,17 +1,17 @@
 package org.hashcode.qualification2020;
 
 import org.hashcode.HashCodeRunner;
-import org.hashcode.InputData;
-import org.hashcode.OutputData;
 import org.hashcode.Solver;
-import org.hashcode.qualification2020.io.DummyInputReader;
-import org.hashcode.qualification2020.io.DummyOutputWriter;
+import org.hashcode.qualification2020.io.BooksInputReader;
+import org.hashcode.qualification2020.io.BooksOutputWriter;
+import org.hashcode.qualification2020.model.BooksInput;
+import org.hashcode.qualification2020.model.BooksOutput;
 import org.hashcode.qualification2020.solvers.DummySolver;
 
-public class HashCodeQualification extends HashCodeRunner<InputData, OutputData> {
+public class HashCodeQualification extends HashCodeRunner<BooksInput, BooksOutput> {
 
-    protected HashCodeQualification(char inputPrefix, Solver<InputData, OutputData> solver) {
-        super(inputPrefix, DummyInputReader.getInstance(), solver, DummyOutputWriter.getInstance());
+    protected HashCodeQualification(char inputPrefix, Solver<BooksInput, BooksOutput> solver) {
+        super(inputPrefix, BooksInputReader.getInstance(), solver, BooksOutputWriter.getInstance());
     }
 
     public static void main(String[] arguments) {
@@ -25,7 +25,7 @@ public class HashCodeQualification extends HashCodeRunner<InputData, OutputData>
             }
 
             char inputPrefix = argument.charAt(0);
-            Solver<InputData, OutputData> solver = new DummySolver();
+            Solver<BooksInput, BooksOutput> solver = new DummySolver();
             HashCodeQualification hashCode = new HashCodeQualification(inputPrefix, solver);
             hashCode.run();
         }
