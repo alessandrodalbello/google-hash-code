@@ -6,7 +6,8 @@ import org.hashcode.qualification2020.io.BooksInputReader;
 import org.hashcode.qualification2020.io.BooksOutputWriter;
 import org.hashcode.qualification2020.model.BooksInput;
 import org.hashcode.qualification2020.model.BooksOutput;
-import org.hashcode.qualification2020.solvers.DummySolver;
+import org.hashcode.qualification2020.solvers.MinimumSignUpTimeLibrarySelector;
+import org.hashcode.qualification2020.solvers.SchedulerSolver;
 
 public class HashCodeQualification extends HashCodeRunner<BooksInput, BooksOutput> {
 
@@ -20,12 +21,13 @@ public class HashCodeQualification extends HashCodeRunner<BooksInput, BooksOutpu
         }
 
         for (String argument : arguments) {
-            if (argument.length() != 1 || argument.compareToIgnoreCase("a") < 0 || argument.compareToIgnoreCase("e") > 0) {
-                throw new IllegalArgumentException(String.format("Invalid argument '%s'. Only 'a', 'b', 'c', 'd' or 'e' are expected.", argument));
+            if (argument.length() != 1 || argument.compareToIgnoreCase("a") < 0 || argument.compareToIgnoreCase("f") > 0) {
+                throw new IllegalArgumentException(String.format("Invalid argument '%s'. Only 'a', 'b', 'c', 'd', 'e' or 'f' are expected.", argument));
             }
 
             char inputPrefix = argument.charAt(0);
-            Solver<BooksInput, BooksOutput> solver = new DummySolver();
+            MinimumSignUpTimeLibrarySelector librarySelector = new MinimumSignUpTimeLibrarySelector();
+            Solver<BooksInput, BooksOutput> solver = new SchedulerSolver(librarySelector);
             HashCodeQualification hashCode = new HashCodeQualification(inputPrefix, solver);
             hashCode.run();
         }

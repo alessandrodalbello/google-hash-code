@@ -1,24 +1,29 @@
 package org.hashcode.qualification2020.model;
 
-import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Library {
 
     private final int id;
     private final int signUpDays;
     private final int maxScansPerDay;
-    private final Set<Book> availableBooks;
-    private final List<Book> scannedBooks;
+    private final List<Book> availableBooks;
+
+    private List<Book> scannedBooks;
 
     public Library(int id, int signUpDays, int maxScansPerDay, Set<Book> availableBooks) {
         this.id = id;
         this.signUpDays = signUpDays;
         this.maxScansPerDay = maxScansPerDay;
-        this.availableBooks = availableBooks;
-        scannedBooks = new ArrayList<>(availableBooks.size());
+        this.availableBooks = availableBooks.stream()
+                .sorted(Comparator.comparingInt(Book::getScore).reversed())
+                .collect(Collectors.toCollection(LinkedList::new));
     }
 
     public int getId() {
@@ -37,20 +42,28 @@ public class Library {
         return availableBooks.size();
     }
 
-    public Set<Book> getAvailableBooks() {
+    public List<Book> getAvailableBooks() {
         return availableBooks;
     }
 
-    public void scanBook(Book book) {
-        scannedBooks.add(book);
+    public Optional<Book> getNextBookToScan() {
+        if (!availableBooks.isEmpty()) {
+            return Optional.of(availableBooks.remove(0));
+        } else {
+            return Optional.empty();
+        }
     }
 
     public int getNumberOfScannedBooks() {
-        return scannedBooks.size();
+        return Objects.nonNull(scannedBooks) ? scannedBooks.size() : 0;
     }
 
     public List<Book> getScannedBooks() {
-        return scannedBooks;
+        return Objects.nonNull(scannedBooks) ? scannedBooks : List.of();
+    }
+
+    public void setScannedBooks(List<Book> scannedBooks) {
+        this.scannedBooks = scannedBooks;
     }
 
     @Override
