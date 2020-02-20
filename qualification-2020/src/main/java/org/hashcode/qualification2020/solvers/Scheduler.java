@@ -54,6 +54,10 @@ public class Scheduler {
         return false;
     }
 
+    public int getCurrentDay() {
+        return currentDay;
+    }
+
     public boolean hasNextDay() {
         return currentDay < maxDays;
     }

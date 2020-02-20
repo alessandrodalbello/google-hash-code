@@ -3,9 +3,11 @@ package org.hashcode.qualification2020.solvers;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
+import org.checkerframework.checker.nullness.Opt;
 import org.hashcode.Solver;
 import org.hashcode.qualification2020.model.Book;
 import org.hashcode.qualification2020.model.BooksInput;
@@ -25,13 +27,20 @@ public class SchedulerSolver implements Solver<BooksInput, BooksOutput> {
         Scheduler scheduler = new Scheduler(inputData.getDays());
         Set<Library> remainingLibraries = new HashSet<>(inputData.getLibraries());
 
-        Optional<Library> libraryToSignUp = librarySelector.selectLibrary(remainingLibraries);
+        Library libraryToSignUp = null;
         while (scheduler.hasNextDay()) {
-            if (libraryToSignUp.isPresent()) {
-                Library library = libraryToSignUp.get();
-                boolean signedUp = scheduler.signUpLibrary(library);
+            while (!remainingLibraries.isEmpty() && Objects.isNull(libraryToSignUp)) {
+                libraryToSignUp = librarySelector.selectLibrary(remainingLibraries);
+                if (Objects.nonNull(libraryToSignUp) &&
+                        scheduler.getCurrentDay() + libraryToSignUp.getSignUpDays() >= inputData.getDays()) {
+                    remainingLibraries.remove(libraryToSignUp);
+                    libraryToSignUp = null;
+                }
+            }
+            if (Objects.nonNull(libraryToSignUp)) {
+                boolean signedUp = scheduler.signUpLibrary(libraryToSignUp);
                 if (signedUp) {
-                    remainingLibraries.remove(library);
+                    remainingLibraries.remove(libraryToSignUp);
                     libraryToSignUp = librarySelector.selectLibrary(remainingLibraries);
                 }
             }
