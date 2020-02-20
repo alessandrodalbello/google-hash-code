@@ -30,7 +30,9 @@ public class BooksOutputWriter extends OutputWriter<BooksOutput> {
 
     @Override
     protected void writeFile(BooksOutput outputData, File outputFile) throws IOException {
-        List<Library> libraries = outputData.getLibraries();
+        List<Library> libraries = outputData.getLibraries().stream()
+                .filter(library -> library.getNumberOfScannedBooks() > 0)
+                .collect(Collectors.toList());
         List<String> submission = new ArrayList<>(libraries.size() * 2 + 1);
         String numberOfLibraries = String.valueOf(libraries.size());
         submission.add(numberOfLibraries);
