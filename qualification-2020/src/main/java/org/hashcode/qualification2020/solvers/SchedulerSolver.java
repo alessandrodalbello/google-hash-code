@@ -4,10 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
 
-import org.checkerframework.checker.nullness.Opt;
 import org.hashcode.Solver;
 import org.hashcode.qualification2020.model.Book;
 import org.hashcode.qualification2020.model.BooksInput;
@@ -29,19 +27,21 @@ public class SchedulerSolver implements Solver<BooksInput, BooksOutput> {
 
         Library libraryToSignUp = null;
         while (scheduler.hasNextDay()) {
-            while (!remainingLibraries.isEmpty() && Objects.isNull(libraryToSignUp)) {
-                libraryToSignUp = librarySelector.selectLibrary(remainingLibraries);
-                if (Objects.nonNull(libraryToSignUp) &&
-                        scheduler.getCurrentDay() + libraryToSignUp.getSignUpDays() >= inputData.getDays()) {
-                    remainingLibraries.remove(libraryToSignUp);
-                    libraryToSignUp = null;
+            if (scheduler.getDaysToSignUp() <= 1) {
+                libraryToSignUp = null;
+                while (!remainingLibraries.isEmpty() && Objects.isNull(libraryToSignUp)) {
+                    libraryToSignUp = librarySelector.selectLibrary(remainingLibraries, scheduler.getCurrentDay(), inputData.getDays());
+                    if (Objects.nonNull(libraryToSignUp) &&
+                            scheduler.getCurrentDay() + libraryToSignUp.getSignUpDays() >= inputData.getDays()) {
+                        remainingLibraries.remove(libraryToSignUp);
+                        libraryToSignUp = null;
+                    }
                 }
             }
             if (Objects.nonNull(libraryToSignUp)) {
                 boolean signedUp = scheduler.signUpLibrary(libraryToSignUp);
                 if (signedUp) {
                     remainingLibraries.remove(libraryToSignUp);
-                    libraryToSignUp = librarySelector.selectLibrary(remainingLibraries);
                 }
             }
             scheduler.nextDay();

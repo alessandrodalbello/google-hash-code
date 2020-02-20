@@ -54,6 +54,10 @@ public class Scheduler {
         return false;
     }
 
+    public int getDaysToSignUp() {
+        return daysToSignUp;
+    }
+
     public int getCurrentDay() {
         return currentDay;
     }
