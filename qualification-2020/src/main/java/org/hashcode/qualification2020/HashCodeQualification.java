@@ -28,7 +28,7 @@ public class HashCodeQualification extends HashCodeRunner<BooksInput, BooksOutpu
             }
 
             char inputPrefix = argument.charAt(0);
-            LibrarySelector librarySelector = new MinimumSignUpTimeLibrarySelector();
+            LibrarySelector librarySelector = new MaximiseBooksScoreLibrarySelector();
             Solver<BooksInput, BooksOutput> solver = new SchedulerSolver(librarySelector);
             HashCodeQualification hashCode = new HashCodeQualification(inputPrefix, solver);
             hashCode.run();

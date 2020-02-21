@@ -1,7 +1,5 @@
 package org.hashcode.qualification2020.solvers;
 
-import java.util.Comparator;
-import java.util.List;
 import java.util.Set;
 import java.util.TreeMap;
 
@@ -12,9 +10,15 @@ public class MaximiseBooksScoreLibrarySelector implements LibrarySelector {
 
     @Override
     public Library selectLibrary(Set<Library> libraries, int currentDay, int maxDays) {
-        return libraries.stream()
-                .max(Comparator.comparingInt(library -> library.getAvailableBooks().size() / library.getMaxScansPerDay()))
-                .orElse(null);
+        TreeMap<Long, Library> libraryByScore = new TreeMap<>();
+        for (Library library : libraries) {
+            long score = library.getAvailableBooks().stream()
+                    .limit(Math.min((maxDays - currentDay) * (long) library.getMaxScansPerDay(), library.getAvailableBooks().size()))
+                    .mapToLong(Book::getScore)
+                    .sum();
+            libraryByScore.put(score, library);
+        }
+        return libraryByScore.lastEntry().getValue();
     }
 
 }
