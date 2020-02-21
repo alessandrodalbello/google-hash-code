@@ -19,7 +19,7 @@ public class HashCodeQualification extends HashCodeRunner<BooksInput, BooksOutpu
 
     public static void main(String[] arguments) {
         if (arguments.length == 0) {
-            throw new IllegalArgumentException("No arguments provided. Expected at least one argument between 'a', 'b', 'c', 'd' or 'e'.");
+            throw new IllegalArgumentException("No arguments provided. Expected at least one argument between 'a', 'b', 'c', 'd', 'e' or 'f'.");
         }
 
         for (String argument : arguments) {
@@ -28,7 +28,7 @@ public class HashCodeQualification extends HashCodeRunner<BooksInput, BooksOutpu
             }
 
             char inputPrefix = argument.charAt(0);
-            LibrarySelector librarySelector = new MaximiseBooksScoreLibrarySelector();
+            LibrarySelector librarySelector = new MinimumSignUpTimeLibrarySelector();
             Solver<BooksInput, BooksOutput> solver = new SchedulerSolver(librarySelector);
             HashCodeQualification hashCode = new HashCodeQualification(inputPrefix, solver);
             hashCode.run();
