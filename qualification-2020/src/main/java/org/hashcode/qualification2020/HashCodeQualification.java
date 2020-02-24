@@ -8,7 +8,8 @@ import org.hashcode.qualification2020.model.BooksInput;
 import org.hashcode.qualification2020.model.BooksOutput;
 import org.hashcode.qualification2020.solvers.BooksSolver;
 import org.hashcode.qualification2020.solvers.LibrarySelector;
-import org.hashcode.qualification2020.solvers.MinimumSignUpTimeLibrarySelector;
+import org.hashcode.qualification2020.solvers.MaximiseBooksValueRatioLibrarySelector;
+import org.hashcode.qualification2020.solvers.MinimiseWasteLibrarySelector;
 
 public class HashCodeQualification extends HashCodeRunner<BooksInput, BooksOutput> {
 
@@ -27,7 +28,7 @@ public class HashCodeQualification extends HashCodeRunner<BooksInput, BooksOutpu
             }
 
             char inputPrefix = argument.charAt(0);
-            LibrarySelector librarySelector = new MinimumSignUpTimeLibrarySelector();
+            LibrarySelector librarySelector = new MinimiseWasteLibrarySelector();
             Solver<BooksInput, BooksOutput> solver = new BooksSolver(librarySelector);
             HashCodeQualification hashCode = new HashCodeQualification(inputPrefix, solver);
             hashCode.run();

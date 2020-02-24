@@ -6,6 +6,7 @@ import java.util.TreeMap;
 import org.hashcode.qualification2020.model.Book;
 import org.hashcode.qualification2020.model.Library;
 
+@Deprecated
 public class MaximiseBooksScoreLibrarySelector implements LibrarySelector {
 
     @Override

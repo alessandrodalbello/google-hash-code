@@ -29,8 +29,8 @@ public class BooksSolver implements Solver<BooksInput, BooksOutput> {
         final int maxDays = inputData.getDays();
         final Set<Library> remainingLibraries = new HashSet<>(inputData.getLibraries());
         final List<Library> signedUpLibraries = new ArrayList<>(remainingLibraries.size());
-        final Set<Book> scannedBooks = new HashSet<>(inputData.getAllBooks().size() * 3 / 2);
-        final Map<Integer, List<Book>> scannedBooksByLibrary = new HashMap<>(remainingLibraries.size() * 3 / 2);
+        final Set<Book> scannedBooks = new HashSet<>();
+        final Map<Integer, List<Book>> scannedBooksByLibrary = new HashMap<>();
 
         int currentDay = 0;
         while (currentDay < maxDays) {
