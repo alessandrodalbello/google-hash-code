@@ -9,6 +9,7 @@ import org.hashcode.qualification2020.model.BooksOutput;
 import org.hashcode.qualification2020.solvers.BooksSolver;
 import org.hashcode.qualification2020.solvers.LibrarySelector;
 import org.hashcode.qualification2020.solvers.MaximiseAvailableBooksValueRatioLibrarySelector;
+import org.hashcode.qualification2020.solvers.MaximiseBooksValueRatioLibrarySelector;
 
 public class HashCodeQualification extends HashCodeRunner<BooksInput, BooksOutput> {
 

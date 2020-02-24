@@ -12,15 +12,15 @@ public class MaximiseBooksValueRatioLibrarySelector implements LibrarySelector {
 
     @Override
     public Library selectLibrary(Set<Library> libraries, Set<Book> scannedBooks, int leftDays) {
-        final Map<Integer, Long> libraryBooksValuesRatio = new HashMap<>();
+        final Map<Integer, Double> libraryBooksValuesRatio = new HashMap<>();
         for (Library library : libraries) {
-            long booksValue = library.getAvailableBooks().stream()
+            double booksValue = library.getAvailableBooks().stream()
                     .mapToLong(Book::getScore)
-                    .sum() / library.getSignUpDays();
+                    .sum() / (double) library.getSignUpDays();
             libraryBooksValuesRatio.put(library.getId(), booksValue);
         }
         return libraries.stream()
-                .max(Comparator.comparingLong(library -> libraryBooksValuesRatio.get(library.getId())))
+                .max(Comparator.comparingDouble(library -> libraryBooksValuesRatio.get(library.getId())))
                 .orElse(null);
     }
 

@@ -12,16 +12,16 @@ public class MaximiseAvailableBooksValueRatioLibrarySelector implements LibraryS
 
     @Override
     public Library selectLibrary(Set<Library> libraries, Set<Book> scannedBooks, int leftDays) {
-        final Map<Integer, Long> libraryBooksValuesRatio = new HashMap<>();
+        final Map<Integer, Double> libraryBooksValuesRatio = new HashMap<>();
         for (Library library : libraries) {
-            long booksValue = library.getAvailableBooks().stream()
+            double booksValue = library.getAvailableBooks().stream()
                     .filter(book -> !scannedBooks.contains(book))
                     .mapToLong(Book::getScore)
-                    .sum() / library.getSignUpDays();
+                    .sum() / (double) library.getSignUpDays();
             libraryBooksValuesRatio.put(library.getId(), booksValue);
         }
         return libraries.stream()
-                .max(Comparator.comparingLong(library -> libraryBooksValuesRatio.get(library.getId())))
+                .max(Comparator.comparingDouble(library -> libraryBooksValuesRatio.get(library.getId())))
                 .orElse(null);
     }
 
