@@ -37,7 +37,7 @@ public class BooksSolver implements Solver<BooksInput, BooksOutput> {
             final int leftDays = maxDays - currentDay;
             removeUnsignableLibraries(remainingLibraries, leftDays);
 
-            Library libraryToSignUp = selectLibraryToSignUp(remainingLibraries, leftDays);
+            Library libraryToSignUp = selectLibraryToSignUp(remainingLibraries, scannedBooks, leftDays);
             int simulatedDays = libraryToSignUp != null ? libraryToSignUp.getSignUpDays() : leftDays;
             simulateDays(simulatedDays, signedUpLibraries, scannedBooks, scannedBooksByLibrary);
 
@@ -62,9 +62,9 @@ public class BooksSolver implements Solver<BooksInput, BooksOutput> {
         unsignableLibraries.forEach(remainingLibraries::remove);
     }
 
-    private Library selectLibraryToSignUp(Set<Library> remainingLibraries, int leftDays) {
+    private Library selectLibraryToSignUp(Set<Library> remainingLibraries, Set<Book> scannedBooks, int leftDays) {
         if (!remainingLibraries.isEmpty()) {
-            return librarySelector.selectLibrary(remainingLibraries, leftDays);
+            return librarySelector.selectLibrary(remainingLibraries, scannedBooks, leftDays);
         }
         return null;
     }

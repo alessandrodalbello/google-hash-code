@@ -23,7 +23,16 @@ MaximiseBooksValueRatioLibrarySelector:
   d: ?
   e: 4664623
   f: 5240161
-  TOT: 12722752
+  TOT: 21371307
+
+MaximiseAvailableBooksValueRatioLibrarySelector (check only available books):
+  a: 21
+  b: 5822900
+  c: 5688727
+  d: ?
+  e: 4649967
+  f: 5208176
+  TOT: 21369791
 
 -----------------------------------------
 
@@ -34,4 +43,4 @@ BEST COMBINATION:
   d: 4815200
   e: 4664623
   f: 5240161
-  TOT: 26186507
+  TOT: 26231632
