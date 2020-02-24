@@ -6,6 +6,6 @@ import org.hashcode.qualification2020.model.Library;
 
 public interface LibrarySelector {
 
-    Library selectLibrary(Set<Library> libraries, int currentDay, int maxDays);
+    Library selectLibrary(Set<Library> libraries, int leftDays);
 
 }

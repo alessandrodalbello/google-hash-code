@@ -8,7 +8,7 @@ import org.hashcode.qualification2020.model.Library;
 public class MinimumSignUpTimeLibrarySelector implements LibrarySelector {
 
     @Override
-    public Library selectLibrary(Set<Library> libraries, int currentDay, int maxDays) {
+    public Library selectLibrary(Set<Library> libraries, int leftDays) {
         return libraries.stream()
                 .min(Comparator.comparingInt(Library::getSignUpDays))
                 .orElse(null);
