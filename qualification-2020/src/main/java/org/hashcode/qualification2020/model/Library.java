@@ -15,6 +15,7 @@ public class Library {
     private final int maxScansPerDay;
     private final List<Book> availableBooks;
 
+    private long availableBooksScore;
     private List<Book> scannedBooks;
 
     public Library(int id, int signUpDays, int maxScansPerDay, Set<Book> availableBooks) {
@@ -24,6 +25,9 @@ public class Library {
         this.availableBooks = availableBooks.stream()
                 .sorted(Comparator.comparingInt(Book::getScore).reversed())
                 .collect(Collectors.toCollection(LinkedList::new));
+        availableBooksScore = availableBooks.stream()
+                .mapToLong(Book::getScore)
+                .sum();
     }
 
     public int getId() {
@@ -48,10 +52,15 @@ public class Library {
 
     public Optional<Book> getNextBookToScan() {
         if (!availableBooks.isEmpty()) {
-            return Optional.of(availableBooks.remove(0));
-        } else {
-            return Optional.empty();
+            Book bookToScan = availableBooks.remove(0);
+            availableBooksScore -= bookToScan.getScore();
+            return Optional.of(bookToScan);
         }
+        return Optional.empty();
+    }
+
+    public long getAvailableBooksScore() {
+        return availableBooksScore;
     }
 
     public int getNumberOfScannedBooks() {

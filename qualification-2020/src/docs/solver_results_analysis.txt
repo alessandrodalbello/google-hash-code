@@ -20,7 +20,7 @@ MaximiseBooksValueRatioLibrarySelector:
   a: 21
   b: 5822900
   c: 5645747
-  d: ?
+  d: 4815395
   e: 4664623
   f: 5240161
   TOT: 21373326
@@ -40,7 +40,7 @@ BEST COMBINATION:
   a: 21
   b: 5822900
   c: 5689822
-  d: 4815200
+  d: 4815395
   e: 4664623
   f: 5240161
-  TOT: 26232727
+  TOT: 26232922
