@@ -15,6 +15,7 @@
     <modules>
         <module>api</module>
         <module>practice-2020</module>
+        <module>qualification-2020</module>
     </modules>
 
     <issueManagement>
@@ -42,6 +43,10 @@
         <developer>
             <name>Riccardo Leschiutta</name>
             <email>leschiutta.ricc@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Stefano De Giorgio</name>
+            <email>degio.ste@gmail.com</email>
         </developer>
     </developers>
 

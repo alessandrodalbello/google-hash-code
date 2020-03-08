@@ -1,0 +1,46 @@
+MinimumSignUpTimeLibrarySelector:
+  a: 21
+  b: 5822900
+  c: 5467966
+  d: 4109300
+  e: 4331398
+  f: 2430950
+  TOT: 22162535
+
+MinimiseWasteLibrarySelector:
+  a: 21
+  b: 5822900
+  c: 464018
+  d: 4815200
+  e: 833550
+  f: 787063
+  TOT: 12722752
+
+MaximiseBooksValueRatioLibrarySelector:
+  a: 21
+  b: 5822900
+  c: 5645747
+  d: 4815395
+  e: 4664623
+  f: 5240161
+  TOT: 21373326
+
+MaximiseAvailableBooksValueRatioLibrarySelector (check only available books):
+  a: 21
+  b: 5822900
+  c: 5689822
+  d: ?
+  e: 4647988
+  f: 5208176
+  TOT: 21369791
+
+-----------------------------------------
+
+BEST COMBINATION:
+  a: 21
+  b: 5822900
+  c: 5689822
+  d: 4815395
+  e: 4664623
+  f: 5240161
+  TOT: 26232922
