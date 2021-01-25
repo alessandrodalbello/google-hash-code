@@ -9,8 +9,8 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
-    <description>A solutions to all rounds of the Google Hash Code 2020 competition.</description>
-    <url>https://github.com/alessandrodalbello/google-hash-code-2020</url>
+    <description>Our solutions to some rounds of the Google Hash Code competition.</description>
+    <url>https://github.com/alessandrodalbello/google-hash-code</url>
 
     <modules>
         <module>api</module>
@@ -19,7 +19,7 @@
     </modules>
 
     <issueManagement>
-        <url>https://github.com/alessandrodalbello/google-hash-code-2020/issues</url>
+        <url>https://github.com/alessandrodalbello/google-hash-code/issues</url>
         <system>GitHub Issues</system>
     </issueManagement>
 
@@ -51,9 +51,9 @@
     </developers>
 
     <scm>
-        <url>https://github.com/alessandrodalbello/google-hash-code-2020</url>
-        <connection>scm:git:git@github.com:alessandrodalbello/google-hash-code-2020.git</connection>
-        <developerConnection>scm:git:git@github.com:alessandrodalbello/google-hash-code-2020.git</developerConnection>
+        <url>https://github.com/alessandrodalbello/google-hash-code</url>
+        <connection>scm:git:git@github.com:alessandrodalbello/google-hash-code.git</connection>
+        <developerConnection>scm:git:git@github.com:alessandrodalbello/google-hash-code.git</developerConnection>
     </scm>
 
     <properties>
@@ -65,11 +65,11 @@
         <maven.compiler.target>11</maven.compiler.target>
 
         <!-- Application dependencies -->
-        <guava.version>28.2-jre</guava.version>
+        <guava.version>30.1-jre</guava.version>
 
         <!-- Maven plugins -->
         <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
-        <maven.assembly.plugin.version>3.2.0</maven.assembly.plugin.version>
+        <maven.assembly.plugin.version>3.3.0</maven.assembly.plugin.version>
     </properties>
 
     <dependencyManagement>
