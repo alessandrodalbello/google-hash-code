@@ -14,7 +14,11 @@ import org.hashcode.practice2021.model.PizzeriaOutput;
 
 abstract class BaseFromLargerTeamsSolver implements Solver<PizzeriaInput, PizzeriaOutput> {
 
-    protected abstract void choosePizza(List<Pizza> pizzas, List<Integer> chosenPizzas, Set<String> chosenIngredients);
+    private final PizzaSelector pizzaSelector;
+
+    protected BaseFromLargerTeamsSolver(PizzaSelector pizzaSelector) {
+        this.pizzaSelector = pizzaSelector;
+    }
 
     @Override
     public PizzeriaOutput solve(PizzeriaInput inputData) {
@@ -52,7 +56,7 @@ abstract class BaseFromLargerTeamsSolver implements Solver<PizzeriaInput, Pizzer
             Set<String> chosenIngredients = new HashSet<>(firstPizza.getIngredients());
 
             for (int t = teamSize - 1; t >= 1; t--) {
-                choosePizza(pizzas, chosenPizzas, chosenIngredients);
+                pizzaSelector.choosePizza(pizzas, chosenPizzas, chosenIngredients);
             }
             assert chosenPizzas.size() == teamSize;
             Delivery delivery = new Delivery(teamSize, chosenIngredients.size(), chosenPizzas);
