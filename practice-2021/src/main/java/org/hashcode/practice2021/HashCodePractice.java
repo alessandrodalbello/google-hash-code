@@ -6,7 +6,7 @@ import org.hashcode.practice2021.io.PizzeriaInputReader;
 import org.hashcode.practice2021.io.PizzeriaOutputWriter;
 import org.hashcode.practice2021.model.PizzeriaInput;
 import org.hashcode.practice2021.model.PizzeriaOutput;
-import org.hashcode.practice2021.solvers.NaiveFromLargerTeamsSolver;
+import org.hashcode.practice2021.solvers.ingredients.NaiveFromLargerTeamsSolver;
 
 public class HashCodePractice extends HashCodeRunner<PizzeriaInput, PizzeriaOutput> {
 

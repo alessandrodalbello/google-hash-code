@@ -1,4 +1,4 @@
-package org.hashcode.practice2021.solvers;
+package org.hashcode.practice2021.solvers.ingredients;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -12,7 +12,9 @@ import org.hashcode.practice2021.model.Pizza;
 import org.hashcode.practice2021.model.PizzeriaInput;
 import org.hashcode.practice2021.model.PizzeriaOutput;
 
-public class LowestWasteFromLargerTeamsSolver implements Solver<PizzeriaInput, PizzeriaOutput> {
+abstract class BaseFromLargerTeamsSolver implements Solver<PizzeriaInput, PizzeriaOutput> {
+
+    protected abstract void choosePizza(List<Pizza> pizzas, List<Integer> chosenPizzas, Set<String> chosenIngredients);
 
     @Override
     public PizzeriaOutput solve(PizzeriaInput inputData) {
@@ -25,55 +27,38 @@ public class LowestWasteFromLargerTeamsSolver implements Solver<PizzeriaInput, P
         return new PizzeriaOutput(deliveries);
     }
 
-    private List<Delivery> chooseDeliveries(List<Pizza> pizzas, int a, int b, int c) {
+    private List<Delivery> chooseDeliveries(List<Pizza> pizzas, int teams4, int teams3, int teams2) {
         List<Delivery> deliveries = new ArrayList<>();
 
-        while ((pizzas.size() >= 4 && (a >= 1 || b >= 1 || c >= 1))
-                || (pizzas.size() >= 3 && (b >= 1 || c >= 1))
-                || (pizzas.size() >= 2 && c >= 1)) {
+        while ((pizzas.size() >= 4 && (teams4 >= 1 || teams3 >= 1 || teams2 >= 1))
+                || (pizzas.size() >= 3 && (teams3 >= 1 || teams2 >= 1))
+                || (pizzas.size() >= 2 && teams2 >= 1)) {
             int teamSize;
-            if (a >= 1) {
+            if (teams4 >= 1) {
                 teamSize = 4;
-                a -= 1;
-            } else if (b >= 1) {
+                teams4 -= 1;
+            } else if (teams3 >= 1) {
                 teamSize = 3;
-                b -= 1;
+                teams3 -= 1;
             } else {
                 teamSize = 2;
-                c -= 1;
+                teams2 -= 1;
             }
             assert pizzas.size() >= teamSize;
 
             List<Integer> chosenPizzas = new ArrayList<>(4);
-            Set<String> chosenIngredients = new HashSet<>();
             Pizza firstPizza = pizzas.remove(0);
             chosenPizzas.add(firstPizza.getId());
-            chosenIngredients.addAll(firstPizza.getIngredients());
+            Set<String> chosenIngredients = new HashSet<>(firstPizza.getIngredients());
 
             for (int t = teamSize - 1; t >= 1; t--) {
-                int chosenPizzaIndex = -1;
-                int lowestWaste = -1;
-                for (int i = 0; lowestWaste != 0 && i < pizzas.size(); i++) {
-                    Pizza pizza = pizzas.get(i);
-                    int waste = (int) pizza.getIngredients().stream()
-                            .filter(chosenIngredients::contains)
-                            .count();
-                    if (lowestWaste < 0 || waste < lowestWaste) {
-                        chosenPizzaIndex = i;
-                        lowestWaste = waste;
-                    }
-                }
-                assert chosenPizzaIndex >= 0 && chosenPizzaIndex < pizzas.size();
-
-                Pizza chosenPizza = pizzas.remove(chosenPizzaIndex);
-                chosenPizzas.add(chosenPizza.getId());
-                chosenIngredients.addAll(chosenPizza.getIngredients());
+                choosePizza(pizzas, chosenPizzas, chosenIngredients);
             }
             assert chosenPizzas.size() == teamSize;
             Delivery delivery = new Delivery(teamSize, chosenIngredients.size(), chosenPizzas);
             deliveries.add(delivery);
         }
-        assert pizzas.size() < 2 || (a + b + c == 0);
+        assert pizzas.size() < 2 || (teams4 + teams3 + teams2 == 0);
         return deliveries;
     }
 }
