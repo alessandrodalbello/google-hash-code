@@ -18,7 +18,7 @@ import org.hashcode.qualification2017.model.Video;
 import org.hashcode.qualification2017.model.VideosInput;
 import org.hashcode.qualification2017.model.VideosOutput;
 
-public class NaiveSolver implements Solver<VideosInput, VideosOutput> {
+public class NaiveVideoSortedSolver implements Solver<VideosInput, VideosOutput> {
 
     @Override
     public VideosOutput solve(VideosInput inputData) {
@@ -43,6 +43,20 @@ public class NaiveSolver implements Solver<VideosInput, VideosOutput> {
             for (Map.Entry<Integer, Integer> latencyEntry : cachesLatency.entrySet()) {
                 sortedCaches.add(new EndpointCache(latencyEntry.getKey(), latencyEntry.getValue()));
             }
+
+            List<Request> requestsOfEndpoint = inputData.getRequests().stream()
+                    .filter(request -> request.getEndpointId() == endpoint.getId())
+                    .collect(Collectors.toList());
+
+            Map<Integer, Integer> requestsByVideo = new HashMap<>();
+            for (Request request : requestsOfEndpoint) {
+                requestsByVideo.put(request.getVideoId(), request.getNumber());
+            }
+            usefulVideos.sort((video1, video2) -> {
+                int reqVideo1 = requestsByVideo.getOrDefault(video1.getId(), 0);
+                int reqVideo2 = requestsByVideo.getOrDefault(video2.getId(), 0);
+                return Integer.compare(reqVideo1, reqVideo2) * -1;
+            });
 
             for (Video usefulVideo : usefulVideos) {
                 boolean isConnectedToEndpoint = videoEndpointsMap.get(usefulVideo.getId()).contains(endpoint.getId());

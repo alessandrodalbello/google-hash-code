@@ -33,11 +33,11 @@ public class VideosOutputWriter extends OutputWriter<VideosOutput> {
         List<String> cachesConfiguration = new ArrayList<>(numberOfCaches + 1);
         cachesConfiguration.add(String.valueOf(numberOfCaches));
 
-        outputData.getCaches().forEach((key, value) -> {
-            String videoIds = value.stream()
+        outputData.getCaches().forEach(cache -> {
+            String videoIds = cache.getVideoIds().stream()
                     .map(String::valueOf)
                     .collect(Collectors.joining(" "));
-            String cacheConfig = key + " " + videoIds;
+            String cacheConfig = cache.getId() + " " + videoIds;
             cachesConfiguration.add(cacheConfig);
         });
 

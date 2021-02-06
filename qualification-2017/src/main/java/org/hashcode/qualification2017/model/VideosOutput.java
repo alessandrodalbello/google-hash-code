@@ -2,17 +2,16 @@ package org.hashcode.qualification2017.model;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.hashcode.OutputData;
 
 public class VideosOutput implements OutputData {
 
-    private final Map<Integer, Set<Integer>> caches;
+    private final List<Cache> caches;
     private final Map<Integer, Endpoint> endpoints;
     private final List<Request> requests;
 
-    public VideosOutput(Map<Integer, Set<Integer>> caches, Map<Integer, Endpoint> endpoints, List<Request> requests) {
+    public VideosOutput(List<Cache> caches, Map<Integer, Endpoint> endpoints, List<Request> requests) {
         this.caches = caches;
         this.endpoints = endpoints;
         this.requests = requests;
@@ -23,9 +22,9 @@ public class VideosOutput implements OutputData {
         long totalSavedTime = 0;
         for (Request request : requests) {
             Endpoint endpoint = endpoints.get(request.getEndpointId());
-            int minLatency = caches.entrySet().stream()
-                    .filter(entry -> entry.getValue().contains(request.getVideoId()))
-                    .map(Map.Entry::getKey)
+            int minLatency = caches.stream()
+                    .filter(cache -> cache.getVideoIds().contains(request.getVideoId()))
+                    .map(Cache::getId)
                     .filter(endpoint::isCacheConnected)
                     .mapToInt(endpoint::getCacheLatency)
                     .min().orElse(endpoint.getDataCenterLatency());
@@ -38,7 +37,7 @@ public class VideosOutput implements OutputData {
         return (long) Math.floor(totalSavedTime * 1000 / (double) totalRequests);
     }
 
-    public Map<Integer, Set<Integer>> getCaches() {
+    public List<Cache> getCaches() {
         return caches;
     }
 

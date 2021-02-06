@@ -23,6 +23,10 @@ public class Endpoint {
         return dataCenterLatency;
     }
 
+    public Map<Integer, Integer> getCachesLatency() {
+        return cachesLatency;
+    }
+
     public int getConnectedCachesNumber() {
         return cachesLatency.size();
     }
