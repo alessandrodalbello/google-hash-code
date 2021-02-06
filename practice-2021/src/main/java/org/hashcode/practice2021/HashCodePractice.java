@@ -6,7 +6,7 @@ import org.hashcode.practice2021.io.PizzeriaInputReader;
 import org.hashcode.practice2021.io.PizzeriaOutputWriter;
 import org.hashcode.practice2021.model.PizzeriaInput;
 import org.hashcode.practice2021.model.PizzeriaOutput;
-import org.hashcode.practice2021.solvers.ingredients.NaiveFromLargerTeamsSolver;
+import org.hashcode.practice2021.solvers.buckets.BucketsSolver;
 
 public class HashCodePractice extends HashCodeRunner<PizzeriaInput, PizzeriaOutput> {
 
@@ -25,7 +25,7 @@ public class HashCodePractice extends HashCodeRunner<PizzeriaInput, PizzeriaOutp
             }
 
             char inputPrefix = argument.charAt(0);
-            Solver<PizzeriaInput, PizzeriaOutput> solver = new NaiveFromLargerTeamsSolver();
+            Solver<PizzeriaInput, PizzeriaOutput> solver = new BucketsSolver();
             HashCodePractice hashCode = new HashCodePractice(inputPrefix, solver);
             hashCode.run();
         }
