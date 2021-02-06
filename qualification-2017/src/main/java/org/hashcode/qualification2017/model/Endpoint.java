@@ -27,6 +27,8 @@ public class Endpoint {
         return cachesLatency.size();
     }
 
+    public Map<Integer, Integer> getCachesLatencyMap() { return cachesLatency; }
+
     public int getCacheLatency(int cacheId) {
         return cachesLatency.get(cacheId);
     }
