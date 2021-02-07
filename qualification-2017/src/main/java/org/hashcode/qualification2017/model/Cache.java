@@ -28,11 +28,12 @@ public class Cache {
         return remainingSize >= video.getSize();
     }
 
-    public void addVideo(Video video) {
+    public boolean addVideo(Video video) {
         boolean isVideoAdded = videoIds.add(video.getId());
         if (isVideoAdded) {
             remainingSize -= video.getSize();
         }
+        return isVideoAdded;
     }
 
     @Override

@@ -6,7 +6,7 @@ import org.hashcode.qualification2017.io.VideosInputReader;
 import org.hashcode.qualification2017.io.VideosOutputWriter;
 import org.hashcode.qualification2017.model.VideosInput;
 import org.hashcode.qualification2017.model.VideosOutput;
-import org.hashcode.qualification2017.solvers.NaiveVideoSortedSolver;
+import org.hashcode.qualification2017.solvers.BrutalCombosOptimizedSolver;
 
 public class HashCodeQualification extends HashCodeRunner<VideosInput, VideosOutput> {
 
@@ -25,7 +25,7 @@ public class HashCodeQualification extends HashCodeRunner<VideosInput, VideosOut
             }
 
             char inputPrefix = argument.charAt(0);
-            Solver<VideosInput, VideosOutput> solver = new NaiveVideoSortedSolver();
+            Solver<VideosInput, VideosOutput> solver = new BrutalCombosOptimizedSolver();
             HashCodeQualification hashCode = new HashCodeQualification(inputPrefix, solver);
             hashCode.run();
         }
