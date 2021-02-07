@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.hashcode.Solver;
@@ -22,22 +21,25 @@ public class NaiveSolver implements Solver<VideosInput, VideosOutput> {
 
     @Override
     public VideosOutput solve(VideosInput inputData) {
-        Map<Integer, Endpoint> endpointsMap = toEndpointsMap(inputData.getEndpoints());
-        Map<Integer, Set<Integer>> videoEndpointsMap = inputData.getVideos().stream()
-                .collect(Collectors.toMap(Video::getId, video -> inputData.getRequests().stream()
+        List<Video> videos = inputData.getVideos();
+        List<Endpoint> endpoints = inputData.getEndpoints();
+        List<Request> requests = inputData.getRequests();
+
+        Map<Integer, Set<Integer>> videoEndpointsMap = videos.stream()
+                .collect(Collectors.toMap(Video::getId, video -> requests.stream()
                         .filter(request -> request.getVideoId() == video.getId())
                         .map(Request::getEndpointId)
                         .collect(Collectors.toSet())
                 ));
-        List<Video> usefulVideos = inputData.getVideos().stream()
+        List<Video> usefulVideos = videos.stream()
                 .filter(video -> videoEndpointsMap.get(video.getId()).stream()
-                        .map(endpointId -> endpointsMap.get(endpointId).getConnectedCachesNumber())
+                        .map(endpointId -> endpoints.get(endpointId).getConnectedCachesNumber())
                         .anyMatch(connectedCaches -> connectedCaches > 0))
                 .filter(video -> video.getSize() <= inputData.getCacheSize())
                 .collect(Collectors.toList());
 
         Map<Integer, Cache> caches = new HashMap<>();
-        for (Endpoint endpoint : inputData.getEndpoints()) {
+        for (Endpoint endpoint : endpoints) {
             TreeSet<EndpointCache> sortedCaches = new TreeSet<>();
             Map<Integer, Integer> cachesLatency = endpoint.getCachesLatency();
             for (Map.Entry<Integer, Integer> latencyEntry : cachesLatency.entrySet()) {
@@ -64,11 +66,7 @@ public class NaiveSolver implements Solver<VideosInput, VideosOutput> {
             }
         }
         List<Cache> cachesList = new ArrayList<>(caches.values());
-        return new VideosOutput(cachesList, endpointsMap, inputData.getRequests());
-    }
-
-    private Map<Integer, Endpoint> toEndpointsMap(List<Endpoint> endpoints) {
-        return endpoints.stream().collect(Collectors.toMap(Endpoint::getId, Function.identity()));
+        return new VideosOutput(cachesList, endpoints, requests);
     }
 
 }

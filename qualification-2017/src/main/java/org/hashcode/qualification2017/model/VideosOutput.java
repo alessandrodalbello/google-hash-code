@@ -1,17 +1,16 @@
 package org.hashcode.qualification2017.model;
 
 import java.util.List;
-import java.util.Map;
 
 import org.hashcode.OutputData;
 
 public class VideosOutput implements OutputData {
 
     private final List<Cache> caches;
-    private final Map<Integer, Endpoint> endpoints;
+    private final List<Endpoint> endpoints;
     private final List<Request> requests;
 
-    public VideosOutput(List<Cache> caches, Map<Integer, Endpoint> endpoints, List<Request> requests) {
+    public VideosOutput(List<Cache> caches, List<Endpoint> endpoints, List<Request> requests) {
         this.caches = caches;
         this.endpoints = endpoints;
         this.requests = requests;
