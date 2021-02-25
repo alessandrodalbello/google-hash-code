@@ -37,7 +37,7 @@ public class TrafficOutputWriter extends OutputWriter<TrafficOutput> {
         for (Schedule schedule : schedules) {
             submission.add(String.valueOf(schedule.getIntersection()));
             for (IncomingStreet incomingStreet : schedule.getIncomingStreets()) {
-                String scheduleDescription = incomingStreet.getStreetName() + " " + incomingStreet.getGreenDuration();
+                String scheduleDescription = incomingStreet.getStreetName() + " " + incomingStreet.getDuration();
                 submission.add(scheduleDescription);
             }
         }
