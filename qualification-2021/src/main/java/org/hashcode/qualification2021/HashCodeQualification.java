@@ -7,6 +7,7 @@ import org.hashcode.qualification2021.io.TrafficOutputWriter;
 import org.hashcode.qualification2021.model.TrafficInput;
 import org.hashcode.qualification2021.model.TrafficOutput;
 import org.hashcode.qualification2021.solvers.DummySolver;
+import org.hashcode.qualification2021.solvers.IgnorantSolver;
 
 public class HashCodeQualification extends HashCodeRunner<TrafficInput, TrafficOutput> {
 
@@ -25,7 +26,7 @@ public class HashCodeQualification extends HashCodeRunner<TrafficInput, TrafficO
             }
 
             char inputPrefix = argument.charAt(0);
-            Solver<TrafficInput, TrafficOutput> solver = new DummySolver();
+            Solver<TrafficInput, TrafficOutput> solver = new IgnorantSolver();
             HashCodeQualification hashCode = new HashCodeQualification(inputPrefix, solver);
             hashCode.run();
         }
