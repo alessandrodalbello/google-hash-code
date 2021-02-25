@@ -18,7 +18,7 @@ public class IgnorantSolver implements Solver<TrafficInput, TrafficOutput> {
                 .sorted(Comparator.comparingInt(Car::getPathLength))
                 .collect(Collectors.toList());
 
-        Map<Street, Integer> times = new HashMap();
+        Map<Street, Integer> times = new HashMap<>();
 
         for (Car car : sortedCars) {
             List<Street> path = car.getPath();
@@ -40,18 +40,19 @@ public class IgnorantSolver implements Solver<TrafficInput, TrafficOutput> {
             streets.add(s);
         }
 
+        List<Schedule> schedules = new ArrayList<>();
         for (Map.Entry<Integer, Set<Street>> entry : nodesMap.entrySet()) {
-            System.out.println(entry.getKey() + "/" + entry.getValue());
+            List<IncomingStreet> incomingStreets = new ArrayList<>();
+            for (Street street : entry.getValue()) {
+                if (times.containsKey(street)) {
+                    IncomingStreet incomingStreet = new IncomingStreet(street.getName(), times.get(street));
+                    incomingStreets.add(incomingStreet);
+                }
+            }
+            Schedule schedule = new Schedule(entry.getKey(), incomingStreets);
+            schedules.add(schedule);
         }
-
-
-
-
-        String streetName = inputData.getStreets().get(0).getName();
-
-        IncomingStreet incomingStreet = new IncomingStreet(streetName, 1);
-        Schedule schedule = new Schedule(0, List.of(incomingStreet));
-        return new TrafficOutput(inputData.getDuration(), inputData.getBonusPoints(), inputData.getCars(), List.of(schedule));
+        return new TrafficOutput(schedules);
     }
 
 }

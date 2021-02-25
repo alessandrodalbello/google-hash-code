@@ -6,7 +6,6 @@ import org.hashcode.qualification2021.io.TrafficInputReader;
 import org.hashcode.qualification2021.io.TrafficOutputWriter;
 import org.hashcode.qualification2021.model.TrafficInput;
 import org.hashcode.qualification2021.model.TrafficOutput;
-import org.hashcode.qualification2021.solvers.DummySolver;
 import org.hashcode.qualification2021.solvers.IgnorantSolver;
 
 public class HashCodeQualification extends HashCodeRunner<TrafficInput, TrafficOutput> {
