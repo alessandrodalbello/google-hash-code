@@ -15,7 +15,7 @@ public class DummySolver implements Solver<TrafficInput, TrafficOutput> {
         String streetName = inputData.getStreets().get(0).getName();
         IncomingStreet incomingStreet = new IncomingStreet(streetName, 1);
         Schedule schedule = new Schedule(0, List.of(incomingStreet));
-        return new TrafficOutput(inputData.getDuration(), inputData.getBonusPoints(), inputData.getCars(), List.of(schedule));
+        return new TrafficOutput(List.of(schedule));
     }
 
 }
