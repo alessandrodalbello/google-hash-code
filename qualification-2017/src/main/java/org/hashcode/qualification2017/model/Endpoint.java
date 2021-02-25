@@ -1,5 +1,7 @@
 package org.hashcode.qualification2017.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -33,6 +35,10 @@ public class Endpoint {
 
     public int getCacheLatency(int cacheId) {
         return cachesLatency.get(cacheId);
+    }
+
+    public List<Integer> getConnectedCaches() {
+        return new ArrayList<>(cachesLatency.keySet());
     }
 
     public boolean isCacheConnected(int cacheId) {
