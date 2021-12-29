@@ -8,9 +8,9 @@ import org.hashcode.HashCodeRunner;
 import org.hashcode.Solver;
 import org.hashcode.practice2020.io.PizzaOutputWriter;
 
-public class HashCodePractice extends HashCodeRunner<PizzaInput, PizzaOutput> {
+public class HashCodePizzas extends HashCodeRunner<PizzaInput, PizzaOutput> {
 
-    protected HashCodePractice(char inputPrefix, Solver<PizzaInput, PizzaOutput> solver) {
+    protected HashCodePizzas(char inputPrefix, Solver<PizzaInput, PizzaOutput> solver) {
         super(inputPrefix, PizzaInputReader.getInstance(), solver, PizzaOutputWriter.getInstance());
     }
 
@@ -26,7 +26,7 @@ public class HashCodePractice extends HashCodeRunner<PizzaInput, PizzaOutput> {
 
             char inputPrefix = argument.charAt(0);
             Solver<PizzaInput, PizzaOutput> solver = new MultiRepetitiveGreedySolver();
-            HashCodePractice hashCode = new HashCodePractice(inputPrefix, solver);
+            HashCodePizzas hashCode = new HashCodePizzas(inputPrefix, solver);
             hashCode.run();
         }
     }
